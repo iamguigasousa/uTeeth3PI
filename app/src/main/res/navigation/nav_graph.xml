@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="br.com.uteeth3pi.LoginContaFragment"
+        android:label="Logar ou criar conta"
+        tools:layout="@layout/fragment_login_conta" >
+
+        <action
+            android:id="@+id/action_LoginFragment_to_CriarContaFragment"
+            app:destination="@id/CriarContaFragment" />
+        <action
+            android:id="@+id/action_LoginFragment_to_HomeFragment"
+            app:destination="@+id/HomeFragment"/>
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/CriarContaFragment"
+        android:name="br.com.uteeth3pi.CriarContaFragment"
+        android:label="Criar Conta"
+        tools:layout="@layout/fragment_criar_conta" >
+
+        <action
+            android:id="@+id/action_CriarContaFragment_to_CurriculoFragment"
+            app:destination="@id/CurriculoFragment" />
+        <action
+            android:id="@+id/action_CriarContaFragment_to_LoginFragment"
+            app:destination="@id/LoginFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/CurriculoFragment"
+        android:name="br.com.uteeth3pi.CurriculoFragment"
+        android:label="Mini Curriculo"
+        tools:layout="@layout/fragment_curriculo" >
+        <action
+            android:id="@+id/action_CurriculoFragment_to_LoginFragment"
+            app:destination="@id/LoginFragment" />
+        <action
+            android:id="@+id/action_CurriculoFragment_to_CriarContaFragment"
+            app:destination="@id/CriarContaFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="br.com.uteeth3pi.HomeFragment"
+        android:label="Tela Inicial"
+        tools:layout="@layout/fragment_home" >
+    </fragment>
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="br.com.uteeth3pi.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_LoginFragment"
+            app:destination="@id/LoginFragment" />
+    </fragment>
+</navigation>

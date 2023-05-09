@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".CurriculoFragment">
+
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/imgb_arrow"
+        android:layout_width="77dp"
+        android:layout_height="64dp"
+        android:background="@color/white"
+        android:scaleType="centerCrop"
+        android:src="@drawable/arrow">
+
+    </androidx.appcompat.widget.AppCompatImageButton>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_uteethlogo"
+        android:layout_width="wrap_content"
+        android:layout_height="63dp"
+        android:layout_marginTop="5dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/uteeth_png"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_undraw"
+        android:layout_width="wrap_content"
+        android:layout_height="137dp"
+        android:layout_marginBottom="20dp"
+        app:srcCompat="@drawable/undraw_png"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv_create"
+        android:layout_width="380dp"
+        android:layout_height="26dp"
+        android:layout_gravity="center"
+
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Write a resume, up to 2000 words"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/et_curriculo"
+        style="@style/edit_text"
+        android:layout_height="279dp"
+        android:elevation="5dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center|top"
+        android:hint="Resume"
+        android:maxLength="2000"
+        android:padding="5dp"
+        android:shadowColor="@color/black" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_sign_up"
+        style="@style/containerComponents"
+        android:text="Sign Up"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/poppins"
+        android:layout_height="65dp"
+        android:elevation="100dp"
+        />
+
+
+</LinearLayout>
