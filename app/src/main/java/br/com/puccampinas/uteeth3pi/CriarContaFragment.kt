@@ -56,6 +56,9 @@ class CriarContaFragment : Fragment() {
                 binding.etTelefoneCreate.text.toString(),
                 binding.etEmail.text.toString(),
                 binding.etPassword.text.toString(),
+                binding.etAddress1.text.toString(),
+                binding.etAddress2.text.toString(),
+                binding.etAddress3.text.toString(),
                 (activity as MainActivity).getFcmToken()
             );
         }
@@ -80,7 +83,7 @@ class CriarContaFragment : Fragment() {
         imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 
-    private fun signUpNewAccount(nome: String, telefone: String, email: String, password: String, fcmToken: String) {
+    private fun signUpNewAccount(nome: String, telefone: String, email: String, password: String, address1: String, address2: String, address3: String, fcmToken: String) {
         auth = Firebase.auth
         // auth.useEmulator("127.0.0.1", 5001)
         // invocar a função e receber o retorno fazendo Cast para "CustomResponse"
@@ -93,7 +96,7 @@ class CriarContaFragment : Fragment() {
                     val user = auth.currentUser
                     (activity as MainActivity).storeUserId(user!!.uid)
                     // atualizar o perfil do usuário com os dados chamando a function.
-                    updateUserProfile(nome, telefone, email, user!!.uid, fcmToken)
+                    updateUserProfile(nome, telefone, email, user!!.uid, address1, address2, address3, fcmToken)
                         .addOnCompleteListener(requireActivity()) { res ->
                             // conta criada com sucesso.
                             if(res.result.status == "SUCCESS"){
@@ -113,16 +116,19 @@ class CriarContaFragment : Fragment() {
             }
     }
 
-    private fun updateUserProfile(nome: String, telefone: String, email: String, uid: String, fcmToken: String) : Task<CustomResponse>{
+    private fun updateUserProfile(nome: String, telefone: String, email: String, uid: String, address1: String, address2: String, address3: String, fcmToken: String) : Task<CustomResponse>{
         // chamar a function para atualizar o perfil.
         functions = Firebase.functions("southamerica-east1")
 
         // Create the arguments to the callable function.
         val data = hashMapOf(
-            "nome" to nome,
-            "telefone" to telefone,
+            "name" to nome,
+            "phone" to telefone,
             "email" to email,
             "uid" to uid,
+            "address1" to address1,
+            "address2" to address2,
+            "address3" to address3,
             "fcmToken" to fcmToken
         )
 
