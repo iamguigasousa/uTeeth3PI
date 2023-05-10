@@ -2,11 +2,14 @@ package br.com.puccampinas.uteeth3pi.datastore
 
 import android.content.Context
 import androidx.core.content.edit
+import br.com.puccampinas.uteeth3pi.HomeFragment
+import br.com.puccampinas.uteeth3pi.MainActivity
 
 private const val USER_PREFERENCES_NAME = "prefs_tokens"
 
 private const val UID_KEY = "uid"
 private const val FCMTOKEN_KEY = "fcmToken"
+private const val STATUS = "status"
 
 /**
  * Class that handles saving and retrieving user preferences
@@ -38,6 +41,17 @@ class UserPreferencesRepository private constructor(context: Context) {
     fun updateFcmToken(newFcmToken: String) {
         sharedPreferences.edit {
             putString(FCMTOKEN_KEY, newFcmToken)
+        }
+    }
+
+    var status: Boolean = false
+        get() {
+            return sharedPreferences.getBoolean(STATUS, false)!!
+        }
+
+    fun updateStatus(newStatus: Boolean) {
+        sharedPreferences.edit {
+            putBoolean(STATUS, newStatus)
         }
     }
 
