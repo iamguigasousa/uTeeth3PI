@@ -1,5 +1,6 @@
 package br.com.puccampinas.uteeth3pi
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
 import br.com.puccampinas.uteeth3pi.databinding.FragmentLoginContaBinding
+import br.com.puccampinas.uteeth3pi.datastore.UserPreferencesRepository
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
@@ -79,16 +82,19 @@ class LoginContaFragment : Fragment() {
         auth = Firebase.auth
 
         auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
+            .addOnCompleteListener (OnCompleteListener  { task ->
+                if (task.isSuccessful) {
                     // login completado com sucesso.
+
+                    (activity as MainActivity).storeUserId(task.result.user!!.uid)
+
                     findNavController().navigate(R.id.action_LoginFragment_to_HomeFragment)
                 } else {
-                    if (it.exception is FirebaseAuthException) {
+                    if (task.exception is FirebaseAuthException) {
                         Snackbar.make(requireView(),"Não foi possível fazer o login, verifique os dados e tente novamente.", Snackbar.LENGTH_LONG).show()
                     }
                 }
-            }
+            })
     }
 
     override fun onDestroyView() {

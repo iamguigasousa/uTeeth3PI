@@ -49,6 +49,7 @@ class HomeFragment : Fragment() {
 
         binding.btnOnOff.setOnClickListener {
             userPreferencesRepository.updateStatus(!userPreferencesRepository.status)
+
             OnStatus(userPreferencesRepository.status)
         }
 
@@ -90,8 +91,6 @@ class HomeFragment : Fragment() {
             "uid" to (activity as MainActivity).getUserUid(),
             "status" to status
         )
-
-        Snackbar.make(requireView(),"${data}", Snackbar.LENGTH_LONG).show()
 
         return functions
             .getHttpsCallable("changeStatus")
