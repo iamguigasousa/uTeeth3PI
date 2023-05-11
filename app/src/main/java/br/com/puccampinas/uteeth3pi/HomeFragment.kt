@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.navigation.fragment.findNavController
 import br.com.puccampinas.uteeth3pi.databinding.FragmentHomeBinding
 import br.com.puccampinas.uteeth3pi.datastore.UserPreferencesRepository
 import com.google.android.gms.tasks.Task
@@ -51,6 +52,10 @@ class HomeFragment : Fragment() {
             userPreferencesRepository.updateStatus(!userPreferencesRepository.status)
 
             OnStatus(userPreferencesRepository.status)
+        }
+
+        binding.btnMensagem.setOnClickListener{
+            findNavController().navigate(R.id.action_HomeFragment_to_InfoFragment)
         }
 
 

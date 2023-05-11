@@ -40,6 +40,10 @@
         android:label="Home"
         tools:layout="@layout/fragment_home">
 
+        <action
+            android:id="@+id/action_HomeFragment_to_InfoFragment"
+            app:destination="@+id/InfoFragment" />
+
     </fragment>
 
     <fragment
@@ -48,6 +52,14 @@
         android:label="Notification"
         tools:layout="@layout/fragment_notifications_are_disabled">
 
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/InfoFragment"
+        android:name="br.com.puccampinas.uteeth3pi.InfoFragment"
+        android:label="Info"
+        tools:layout="@layout/fragment_info">
 
     </fragment>
 
