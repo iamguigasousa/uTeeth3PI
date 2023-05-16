@@ -10,61 +10,110 @@
     tools:context=".LoginContaFragment">
 
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_uteethlogo"
+        android:layout_width="wrap_content"
+        android:layout_height="63dp"
+        android:layout_marginTop="5dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/uteeth_png"
+        tools:ignore="MissingConstraints" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_undraw"
+        android:layout_width="wrap_content"
+        android:layout_height="215dp"
+        android:layout_marginBottom="20dp"
+        app:srcCompat="@drawable/undraw_png"
+        tools:ignore="MissingConstraints" />
+
+
     <TextView
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Login to your Account"
-        android:textSize="20dp" />
+        android:layout_marginLeft="30dp"
+        android:textSize="20dp"
+        android:fontFamily="@font/poppinssemibold"
+        android:text="Login to your Account" />
+
 
     <EditText
         android:id="@+id/et_email"
-        android:shadowColor="@color/black"
-        android:elevation="5dp"
-        android:inputType="textWebEmailAddress"
-        android:hint="E-mail"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"/>
-
-    <EditText
-        android:id="@+id/et_password"
+        style="@style/edit_text"
+        android:fontFamily="@font/poppinsmedium"
         android:padding="5dp"
         android:shadowColor="@color/black"
         android:elevation="5dp"
+        android:inputType="textWebEmailAddress"
+        android:hint="E-mail">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/et_password"
+        style="@style/edit_text"
+        android:fontFamily="@font/poppinsmedium"
+        android:padding="5dp"
+        android:shadowColor="@color/black"
+        android:elevation="5dp"
+
         android:hint="Password"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/black"
         android:inputType="textPassword"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"/>
+        >
 
+    </EditText>
 
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_sign_in"
+        style="@style/containerComponents"
         android:text="Sign In"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginBottom="20dp"
+        android:fontFamily="@font/poppinsregular"
         android:layout_height="65dp"
         android:elevation="100dp"
-        android:layout_width="match_parent"
-        android:layout_marginTop="400dp"/>
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="-Ou entre com -"
+        android:text="-Or Sign with-"
         android:layout_gravity="center"
+        android:fontFamily="@font/poppinslight"
 
         />
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btn_google"
+            style="@style/google_login"
+            android:layout_width="120dp"
+            android:layout_gravity="right"
+            android:elevation="10dp"
+            android:src="@drawable/google_logo1"></ImageView>
+
+        <ImageView
+            android:id="@+id/btn_facebook"
+            style="@style/google_login"
+            android:layout_width="120dp"
+            android:layout_gravity="right"
+            android:elevation="10dp"
+            android:src="@drawable/facebook_logo3">
+
+        </ImageView>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -78,7 +127,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
-            android:text="Não tem conta?"
+            android:fontFamily="@font/poppinssemibold"
+            android:text="Don't have an account?"
             android:textSize="20dp" />
 
         <TextView
@@ -86,8 +136,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppinssemibold"
             android:textColor="#040957"
-            android:text=" Crie uma"
+            android:text="   Sign Up"
             android:textSize="20dp">
 
         </TextView>

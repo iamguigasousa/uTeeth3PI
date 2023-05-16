@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/LoginFragment">
+    app:startDestination="@id/splashScreenFragment3">
 
     <fragment
         android:id="@+id/LoginFragment"
@@ -62,7 +62,15 @@
         tools:layout="@layout/fragment_info">
 
     </fragment>
-
+    <fragment
+        android:id="@+id/splashScreenFragment3"
+        android:name="br.com.puccampinas.uteeth3pi.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment3_to_LoginFragment"
+            app:destination="@id/LoginFragment" />
+    </fragment>
 
 
 </navigation>

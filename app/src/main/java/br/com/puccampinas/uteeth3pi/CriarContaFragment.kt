@@ -49,6 +49,10 @@ class CriarContaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.imgbArrow.setOnClickListener {
+            findNavController().navigate(R.id.action_CriarContaFragment_to_LoginFragment)
+        }
+
         binding.btnCadastrar.setOnClickListener {
             // criar a conta...
             signUpNewAccount(
@@ -59,6 +63,7 @@ class CriarContaFragment : Fragment() {
                 binding.etAddress1.text.toString(),
                 binding.etAddress2.text.toString(),
                 binding.etAddress3.text.toString(),
+                binding.etCurriculum.text.toString(),
                 (activity as MainActivity).getFcmToken()
             );
         }
@@ -83,7 +88,7 @@ class CriarContaFragment : Fragment() {
         imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 
-    private fun signUpNewAccount(nome: String, telefone: String, email: String, password: String, address1: String, address2: String, address3: String, fcmToken: String) {
+    private fun signUpNewAccount(nome: String, telefone: String, email: String, password: String, address1: String, address2: String, address3: String, curriculum: String, fcmToken: String) {
         auth = Firebase.auth
         // auth.useEmulator("127.0.0.1", 5001)
         // invocar a função e receber o retorno fazendo Cast para "CustomResponse"
@@ -96,7 +101,7 @@ class CriarContaFragment : Fragment() {
                     val user = auth.currentUser
                     (activity as MainActivity).storeUserId(user!!.uid)
                     // atualizar o perfil do usuário com os dados chamando a function.
-                    updateUserProfile(nome, telefone, email, user!!.uid, address1, address2, address3, fcmToken)
+                    updateUserProfile(nome, telefone, email, user!!.uid, address1, address2, address3, curriculum, fcmToken)
                         .addOnCompleteListener(requireActivity()) { res ->
                             // conta criada com sucesso.
                             if(res.result.status == "SUCCESS"){
@@ -116,7 +121,7 @@ class CriarContaFragment : Fragment() {
             }
     }
 
-    private fun updateUserProfile(nome: String, telefone: String, email: String, uid: String, address1: String, address2: String, address3: String, fcmToken: String) : Task<CustomResponse>{
+    private fun updateUserProfile(nome: String, telefone: String, email: String, uid: String, address1: String, address2: String, address3: String,curriculum: String, fcmToken: String) : Task<CustomResponse>{
         // chamar a function para atualizar o perfil.
         functions = Firebase.functions("southamerica-east1")
 
@@ -129,6 +134,7 @@ class CriarContaFragment : Fragment() {
             "address1" to address1,
             "address2" to address2,
             "address3" to address3,
+            "curriculum" to curriculum,
             "fcmToken" to fcmToken
         )
 
