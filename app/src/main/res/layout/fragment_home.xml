@@ -10,17 +10,16 @@
     tools:context=".HomeFragment">
 
 
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_on_off"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+
+        android:layout_marginBottom="20dp"
+        android:elevation="100dp"
         android:text="Liga/Desliga"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp"
-        android:layout_height="65dp"
-        android:elevation="100dp"
-        android:layout_width="match_parent"
-        android:layout_marginTop="350dp"/>
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_mensagem"
@@ -32,6 +31,18 @@
         android:elevation="100dp"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+
+
+
+
+
+        />
 
 
 
