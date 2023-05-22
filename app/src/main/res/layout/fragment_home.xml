@@ -32,17 +32,18 @@
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"/>
 
-    <LinearLayout
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_lista"
+        android:text="Lista"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:layout_height="65dp"
+        android:elevation="100dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"/>
 
 
-
-
-
-
-
-        />
 
 
 

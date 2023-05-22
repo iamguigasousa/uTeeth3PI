@@ -57,6 +57,9 @@ class HomeFragment : Fragment() {
         binding.btnMensagem.setOnClickListener{
             findNavController().navigate(R.id.action_HomeFragment_to_InfoFragment)
         }
+        binding.btnLista.setOnClickListener {
+            findNavController().navigate(R.id.action_HomeFragment_to_RecyclerViewFragment)
+        }
 
 
         }

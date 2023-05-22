@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_HomeFragment_to_InfoFragment"
             app:destination="@+id/InfoFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_RecyclerViewFragment"
+            app:destination="@+id/RecyclerView"/>
 
     </fragment>
 
@@ -60,6 +63,15 @@
         android:name="br.com.puccampinas.uteeth3pi.InfoFragment"
         android:label="Info"
         tools:layout="@layout/fragment_info">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/RecyclerView"
+        android:name="br.com.puccampinas.uteeth3pi.recyclerview.RecyclerViewFragment"
+        android:label="Info"
+        tools:layout="@layout/list_view">
+
 
     </fragment>
 
