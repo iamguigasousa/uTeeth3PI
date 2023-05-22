@@ -88,7 +88,7 @@ class LoginContaFragment : Fragment() {
 
                     (activity as MainActivity).storeUserId(task.result.user!!.uid)
 
-                    findNavController().navigate(R.id.action_LoginFragment_to_HomeFragment)
+                    findNavController().navigate(R.id.action_LoginFragment_to_homeMenuFragment)
                 } else {
                     if (task.exception is FirebaseAuthException) {
                         Snackbar.make(requireView(),"Não foi possível fazer o login, verifique os dados e tente novamente.", Snackbar.LENGTH_LONG).show()

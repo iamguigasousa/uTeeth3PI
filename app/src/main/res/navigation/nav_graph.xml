@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_LoginFragment_to_Notification"
             app:destination="@+id/NotificationFragment"/>
+        <action
+            android:id="@+id/action_LoginFragment_to_homeMenuFragment"
+            app:destination="@id/homeMenuFragment" />
     </fragment>
 
 
@@ -70,6 +73,30 @@
         <action
             android:id="@+id/action_splashScreenFragment3_to_LoginFragment"
             app:destination="@id/LoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeMenuFragment"
+        android:name="br.com.puccampinas.uteeth3pi.HomeMenuFragment"
+        android:label="fragment_home_menu"
+        tools:layout="@layout/fragment_home_menu" >
+        <action
+            android:id="@+id/action_homeMenuFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+        <action
+            android:id="@+id/action_homeMenuFragment_to_accountDetailsFragment"
+            app:destination="@id/accountDetailsFragment" />
+        <action
+            android:id="@+id/action_homeMenuFragment_to_LoginFragment"
+            app:destination="@id/LoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountDetailsFragment"
+        android:name="br.com.puccampinas.uteeth3pi.AccountDetailsFragment"
+        android:label="fragment_account_details"
+        tools:layout="@layout/fragment_account_details" >
+        <action
+            android:id="@+id/action_accountDetailsFragment_to_homeMenuFragment"
+            app:destination="@id/homeMenuFragment" />
     </fragment>
 
 
