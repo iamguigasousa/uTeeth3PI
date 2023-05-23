@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -27,10 +28,7 @@ class RecyclerViewFragment : Fragment() {
     private var _binding: FragmentRecyclerViewBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,28 +37,38 @@ class RecyclerViewFragment : Fragment() {
         _binding = FragmentRecyclerViewBinding.inflate(inflater, container, false)
         return binding.root
 
-//        binding.recyclerview
-//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-//        userList = arrayListOf()
-//
-//        db = FirebaseFirestore.getInstance()
-//
-//        db.collection("Chamados").get()
-//            .addOnSuccessListener {
-//                if (!it.isEmpty){
-//                    for (data in it.documents){
-//                        val notificacao: NotificacaoTesteView? = data.toObject(NotificacaoTesteView::class.java)
-//                        if (notificacao != null) {
-//                            userList.add(notificacao)
-//                        }
-//                    }
-//                    recyclerView.adapter = MyAdapter(userList)
-//                }
-//            }
-//            .addOnFailureListener{
-//                Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
-//            }
 
+
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.recyclerview
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        userList = arrayListOf()
+
+        db = FirebaseFirestore.getInstance()
+
+        db.collection("Chamados").get()
+            .addOnSuccessListener {
+                if (!it.isEmpty){
+                    for (data in it.documents){
+                        val notificacao: NotificacaoTesteView? = data.toObject(NotificacaoTesteView::class.java)
+                        if (notificacao != null) {
+                            userList.add(notificacao)
+                        }
+                    }
+                    recyclerView.adapter = MyAdapter(userList)
+                }
+            }
+            .addOnFailureListener{
+                Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 

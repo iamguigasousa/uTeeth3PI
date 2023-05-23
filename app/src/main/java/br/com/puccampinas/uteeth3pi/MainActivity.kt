@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
     ) { isGranted: Boolean ->
         if (!isGranted) {
             // mostrar o fragment
-            navController.navigate(R.id.action_LoginFragment_to_Notification)
+            navController.navigate(R.id.action_LoginFragment_to_HomeFragment)
         }
     }
 

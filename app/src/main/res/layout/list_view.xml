@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:backgroundTint="@color/white"
     android:layout_height="match_parent"
     app:cardCornerRadius="8dp"
     android:layout_margin="10dp">
@@ -14,16 +13,15 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/tv_uid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome:"
-            android:textSize="20sp"/>
+            android:text="image:" />
 
         <TextView
-            android:id="@+id/tv_phone"
+            android:id="@+id/tv_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Telefone:" />
+            android:text="image:" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

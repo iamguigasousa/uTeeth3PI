@@ -10,8 +10,8 @@ import br.com.puccampinas.uteeth3pi.R
 
 class MyAdapter(private val userList: ArrayList<NotificacaoTesteView>) :RecyclerView.Adapter<MyAdapter.MyViewHolder>(){
     class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        val tvName : TextView = itemView.findViewById(R.id.tv_name)
-        val tvPhone: TextView = itemView.findViewById(R.id.tv_phone)
+        val tvUid : TextView = itemView.findViewById(R.id.tv_uid)
+        val tvImage: TextView = itemView.findViewById(R.id.tv_image)
 
     }
 
@@ -20,15 +20,13 @@ class MyAdapter(private val userList: ArrayList<NotificacaoTesteView>) :Recycler
         return MyViewHolder(itemView)
 
     }
-
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.tvUid.text = userList[position].image
+        holder.tvImage.text = userList[position].uidEmergency
+    }
     override fun getItemCount(): Int {
         return userList.size
 
-    }
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.tvName.text = userList[position].image
-        holder.tvPhone.text = userList[position].uidEmergency
     }
 }
 
