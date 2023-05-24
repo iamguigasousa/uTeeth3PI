@@ -4,9 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="8dp"
+    app:cardElevation="18dp"
     app:cardCornerRadius="8dp"
-    android:layout_margin="16dp">
+    android:layout_marginTop="40dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -25,9 +28,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nome:"
+                        android:fontFamily="@font/poppinsmedium"
                         android:textColor="@color/black"
                         android:textSize="26sp"
-                        android:textStyle="bold">
+                        >
 
                     </TextView>
 
@@ -35,6 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pedro"
+                    android:fontFamily="@font/poppinsregular"
                     android:id="@+id/tvfirstName"
                     android:textColor="@color/black"
                     android:layout_marginStart="8dp"
@@ -58,7 +63,8 @@
                 android:text="Número:"
                 android:textColor="@color/black"
                 android:textSize="26sp"
-                android:textStyle="bold">
+                android:fontFamily="@font/poppinsmedium"
+                >
 
             </TextView>
 
@@ -66,6 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="19991753723"
+                android:fontFamily="@font/poppinsregular"
                 android:id="@+id/tvphone"
                 android:textColor="@color/black"
                 android:layout_marginStart="8dp"
@@ -77,6 +84,48 @@
 
         </LinearLayout>
 
+
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="right">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:elevation="10dp"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/btn_aceitar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppinsregular"
+                android:text="Aceitar"
+                android:textColor="@color/blue_200"
+                android:textSize="20sp"
+                android:textStyle="bold"></TextView>
+            <TextView
+                android:id="@+id/btn_recusar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:text="Recusar"
+                android:textSize="20sp"
+                android:fontFamily="@font/poppinsregular"
+                android:textStyle="bold"
+                >
+            </TextView>
+        </LinearLayout>
 
 
 

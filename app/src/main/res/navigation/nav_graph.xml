@@ -88,6 +88,9 @@
         <action
             android:id="@+id/action_homeMenuFragment_to_LoginFragment"
             app:destination="@id/LoginFragment" />
+        <action
+            android:id="@+id/action_homeMenuFragment_to_recyclerViewActivity"
+            app:destination="@id/recyclerViewActivity" />
     </fragment>
     <fragment
         android:id="@+id/accountDetailsFragment"
@@ -98,6 +101,11 @@
             android:id="@+id/action_accountDetailsFragment_to_homeMenuFragment"
             app:destination="@id/homeMenuFragment" />
     </fragment>
+    <activity
+        android:id="@+id/recyclerViewActivity"
+        android:name="br.com.puccampinas.uteeth3pi.recycleview.RecyclerViewActivity"
+        android:label="activity_recycler_view"
+        tools:layout="@layout/activity_recycler_view" />
 
 
 </navigation>

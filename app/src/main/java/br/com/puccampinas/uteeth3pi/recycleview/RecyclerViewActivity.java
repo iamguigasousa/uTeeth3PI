@@ -1,6 +1,7 @@
 package br.com.puccampinas.uteeth3pi.recycleview;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.media.metrics.Event;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,9 +39,11 @@ public class RecyclerViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
 
+
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
-        progressDialog.setMessage("Fetching Data...");
+        progressDialog.setMessage("Atualizando Data...");
         progressDialog.show();
 
         recyclerView=findViewById(R.id.recyclerView);

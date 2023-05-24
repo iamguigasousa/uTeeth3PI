@@ -100,127 +100,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView2">>
 
-                    <LinearLayout
-                        android:id="@+id/linearLayout2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="10dp"
-                            android:layout_weight="0.3333"
-                            android:background="@drawable/gray_rectangle_profile"
-                            android:elevation="5dp"
-                            android:orientation="vertical">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_margin="12dp">
-
-                                <ImageView
-                                    android:id="@+id/imageView3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/oval_profile"
-                                    android:src="@drawable/doctor"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <TextView
-                                android:id="@+id/tv_atendimento_profile"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="8dp"
-                                android:fontFamily="@font/poppinssemibold"
-                                android:text="Atendimento"
-                                android:textAlignment="center"
-                                android:textColor="@color/black" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="10dp"
-                            android:layout_weight="0.3333"
-                            android:background="@drawable/gray_rectangle_profile"
-                            android:elevation="5dp"
-                            android:orientation="vertical">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_margin="12dp">
-
-                                <ImageView
-                                    android:id="@+id/imageViewMen"
-                                    android:layout_width="58dp"
-                                    android:layout_height="60dp"
-                                    android:background="@drawable/oval_profile"
-                                    android:scaleType="centerInside"
-
-                                    android:src="@drawable/comments"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <TextView
-                                android:id="@+id/tv_mensagem_profile"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="8dp"
-                                android:fontFamily="@font/poppinssemibold"
-                                android:text="Mensagens"
-                                android:textAlignment="center"
-                                android:textColor="@color/black" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="10dp"
-                            android:layout_weight="0.3333"
-                            android:background="@drawable/gray_rectangle_profile"
-                            android:elevation="5dp"
-                            android:orientation="vertical">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_margin="12dp">
-
-                                <ImageView
-                                    android:id="@+id/imageView4"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/oval_profile"
-                                    android:src="@drawable/notification3"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-
-                            <TextView
-                                android:id="@+id/tv_notificacao_profile"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="8dp"
-                                android:fontFamily="@font/poppinssemibold"
-                                android:text="Notificação"
-                                android:textAlignment="center"
-                                android:textColor="@color/black" />
-                        </LinearLayout>
-
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -236,7 +116,8 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical">
+                                android:orientation="vertical"
+                                android:padding="10dp">
 
                                 <LinearLayout
                                     android:layout_width="match_parent"

@@ -49,12 +49,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name,phone;
+        TextView name,phone,btn_aceitar,btn_recusar;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.tvfirstName);
             phone = itemView.findViewById(R.id.tvphone);
+            btn_aceitar = itemView.findViewById(R.id.btn_aceitar);
+            btn_recusar = itemView.findViewById(R.id.btn_recusar);
         }
     }
 
