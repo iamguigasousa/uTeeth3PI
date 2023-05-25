@@ -11,13 +11,19 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import br.com.puccampinas.uteeth3pi.databinding.FragmentHomeMenuBinding
+import br.com.puccampinas.uteeth3pi.datastore.UserPreferencesRepository
+import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
 import com.google.gson.GsonBuilder
+import org.json.JSONArray
 import org.json.JSONObject
 
 
@@ -33,6 +39,10 @@ class HomeMenuFragment : Fragment() {
     private lateinit var bt_deslogar: Button
     private lateinit var auth: FirebaseAuth
     private var gson = GsonBuilder().enableComplexMapKeySerialization().create()
+
+    private lateinit var functions: FirebaseFunctions
+    private lateinit var userPreferencesRepository: UserPreferencesRepository
+
 
 
     val db: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -60,6 +70,16 @@ class HomeMenuFragment : Fragment() {
         val uid = user!!.uid
 
         val docRef = db.collection("dentista").document(uid)
+
+        userPreferencesRepository = UserPreferencesRepository.getInstance(MainActivity())
+
+        binding.btnLiga.setOnClickListener {
+            userPreferencesRepository.updateStatus(!userPreferencesRepository.status)
+
+            OnStatus(userPreferencesRepository.status)
+            Snackbar.make(requireView(),"Status Atualizado!", Snackbar.LENGTH_LONG).show()
+        }
+
 
         docRef.get()
             .addOnSuccessListener { document ->
@@ -99,6 +119,26 @@ class HomeMenuFragment : Fragment() {
     }
 
 
+    private fun OnStatus(status: Boolean) : Task<CustomResponse> {
+
+        // chamar a function para atualizar o perfil.
+        functions = Firebase.functions("southamerica-east1")
+
+        // Create the arguments to the callable function.
+        val data = hashMapOf(
+            "uid" to (activity as MainActivity).getUserUid(),
+            "status" to status
+        )
+
+
+        return functions
+            .getHttpsCallable("changeStatus")
+            .call(data)
+            .continueWith { task ->
+                val result = gson.fromJson((task.result?.data as String), CustomResponse::class.java)
+                result
+            }
+    }
 
     private fun IniciarComponentes() {
         nomeUsuario = binding.textView

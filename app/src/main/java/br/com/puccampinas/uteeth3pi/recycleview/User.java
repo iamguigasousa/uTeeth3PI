@@ -3,11 +3,11 @@ package br.com.puccampinas.uteeth3pi.recycleview;
 public class User {
 
     String name;
-    long phone;
+    String phone;
 
     public User(){}
 
-    public User(String name, long phone) {
+    public User(String name, String phone) {
         this.name = name;
         this.phone = phone;
     }
@@ -20,11 +20,11 @@ public class User {
         this.name = name;
     }
 
-    public long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }

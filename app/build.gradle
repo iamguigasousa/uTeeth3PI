@@ -10,6 +10,7 @@ android {
 
     defaultConfig {
         applicationId "br.com.puccampinas.uteeth3pi"
+
         minSdk 29
         targetSdk 33
         versionCode 1

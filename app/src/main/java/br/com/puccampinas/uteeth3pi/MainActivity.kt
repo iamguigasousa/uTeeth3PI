@@ -1,6 +1,7 @@
 package br.com.puccampinas.uteeth3pi
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
@@ -22,6 +23,8 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.appcheck.FirebaseAppCheck
 import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging
 
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var userPreferencesRepository: UserPreferencesRepository
+    private lateinit var auth: FirebaseAuth;
 
     private fun prepareFirebaseAppCheckDebug(){
         // Ajustando o AppCheck para modo depuração.
@@ -93,6 +97,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -113,6 +120,7 @@ class MainActivity : AppCompatActivity() {
 
         // invocar as permissões para notificar.
         askNotificationPermission();
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

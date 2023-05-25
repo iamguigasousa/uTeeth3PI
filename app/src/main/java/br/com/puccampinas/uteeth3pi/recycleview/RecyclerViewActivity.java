@@ -64,7 +64,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
     }
 
     private void EventChangeListener() {
-        db.collection("RecyclerViewTeste").orderBy("name", Query.Direction.ASCENDING)
+        db.collection("Chamados").orderBy("name", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {

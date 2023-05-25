@@ -46,6 +46,8 @@ class LoginContaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        verifyLogin()
+
         // evento para tratar o login com auth.
         binding.btnSignIn.setOnClickListener {
             // antes de tentar o login, implemente as validações.
@@ -100,5 +102,13 @@ class LoginContaFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun verifyLogin(){
+        auth=Firebase.auth
+
+        if(auth.currentUser!=null) {
+            findNavController().navigate(R.id.action_LoginFragment_to_homeMenuFragment)
+        }
     }
 }
