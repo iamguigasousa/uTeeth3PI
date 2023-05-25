@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-28dp"
                     android:fontFamily="@font/poppinssemibold"
-                    android:text="Pedro Lyra"
+                    android:text=""
                     android:textColor="#FFFFFF"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -79,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppinslight"
-                    android:text="pedro.lyra@gmail.com"
+                    android:text=""
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="@+id/textView"
                     app:layout_constraintStart_toStartOf="@+id/textView"
@@ -137,7 +137,7 @@
                                         android:textColor="#040957"
                                         android:textSize="18sp" />
 
-                                    <TextView
+                                    <EditText
                                         android:id="@+id/tv_nome_profile2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -146,6 +146,8 @@
                                         android:text="Pedro Lyra"
                                         android:textAlignment="viewEnd"
                                         android:textAllCaps="false"
+                                        android:backgroundTint="@color/white"
+                                        android:textColor="#808080"
                                         android:textSize="18sp" />
 
                                     <ImageButton
@@ -187,7 +189,7 @@
                                         android:textColor="#040957"
                                         android:textSize="18sp" />
 
-                                    <TextView
+                                    <EditText
                                         android:id="@+id/tv_email_profile2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -195,6 +197,8 @@
                                         android:fontFamily="@font/poppinsmedium"
                                         android:text="pedro.lyra@gmail.com"
                                         android:textAlignment="viewEnd"
+                                        android:backgroundTint="@color/white"
+                                        android:textColor="#808080"
                                         android:textAllCaps="false"
                                         android:textSize="18sp" />
 
@@ -237,7 +241,7 @@
                                         android:textColor="#040957"
                                         android:textSize="18sp" />
 
-                                    <TextView
+                                    <EditText
                                         android:id="@+id/tv_phone_profile2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -246,6 +250,8 @@
                                         android:text="19991753723"
                                         android:textAlignment="viewEnd"
                                         android:textAllCaps="false"
+                                        android:backgroundTint="@color/white"
+                                        android:textColor="#808080"
                                         android:textSize="18sp" />
 
                                     <ImageButton
@@ -289,7 +295,7 @@
                                         android:textColor="#040957"
                                         android:textSize="18sp" />
 
-                                    <TextView
+                                    <EditText
                                         android:id="@+id/tv_endereco1_profile2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -298,6 +304,8 @@
                                         android:text="Rua Antônio"
                                         android:textAlignment="viewEnd"
                                         android:textAllCaps="false"
+                                        android:backgroundTint="@color/white"
+                                        android:textColor="#808080"
                                         android:textSize="18sp" />
 
                                     <ImageButton
@@ -339,7 +347,7 @@
                                         android:textColor="#040957"
                                         android:textSize="18sp" />
 
-                                    <TextView
+                                    <EditText
                                         android:id="@+id/tv_endereco2_profile2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -347,6 +355,8 @@
                                         android:fontFamily="@font/poppinsmedium"
                                         android:text="Rua Jacinto"
                                         android:textAlignment="viewEnd"
+                                        android:backgroundTint="@color/white"
+                                        android:textColor="#808080"
                                         android:textAllCaps="false"
                                         android:textSize="18sp" />
 
@@ -391,7 +401,7 @@
                                         android:textColor="#040957"
                                         android:textSize="18sp" />
 
-                                    <TextView
+                                    <EditText
                                         android:id="@+id/tv_endereco3_profile2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -400,6 +410,8 @@
                                         android:text="Rua Rouxinol"
                                         android:textAlignment="viewEnd"
                                         android:textAllCaps="false"
+                                        android:backgroundTint="@color/white"
+                                        android:textColor="#808080"
                                         android:textSize="18sp" />
 
                                     <ImageButton
@@ -441,7 +453,7 @@
                                         android:textColor="#040957"
                                         android:textSize="18sp" />
 
-                                    <TextView
+                                    <EditText
                                         android:id="@+id/tv_curriculo_profile2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
@@ -450,6 +462,8 @@
                                         android:text="Formado em Odontologia na PUC Campinas."
                                         android:textAlignment="viewEnd"
                                         android:textAllCaps="false"
+                                        android:backgroundTint="@color/white"
+                                        android:textColor="#808080"
                                         android:textSize="18sp" />
 
                                     <ImageButton
@@ -462,6 +476,26 @@
                                         android:src="@drawable/edit" />
 
                                 </LinearLayout>
+
+                                <View
+                                    android:id="@+id/view7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginStart="10dp"
+
+
+                                    android:layout_marginEnd="10dp"
+                                    android:background="#D9D9D9" />
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btn_update"
+                                    style="@style/containerComponents"
+                                    android:layout_height="65dp"
+                                    android:elevation="100dp"
+                                    android:fontFamily="@font/poppinsregular"
+                                    android:text="Atualizar"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold" />
 
 
                             </LinearLayout>
