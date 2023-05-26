@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,6 +22,7 @@ import com.google.firebase.ktx.Firebase;
 
 import java.util.ArrayList;
 
+import br.com.puccampinas.uteeth3pi.CustomResponse;
 import br.com.puccampinas.uteeth3pi.R;
 
 public class RecyclerViewActivity extends AppCompatActivity {
@@ -61,7 +63,14 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
 
 
+
     }
+
+
+
+
+
+
 
     private void EventChangeListener() {
         db.collection("Chamados").orderBy("name", Query.Direction.ASCENDING)
@@ -89,4 +98,10 @@ public class RecyclerViewActivity extends AppCompatActivity {
                     }
                 });
     }
-}
+
+    }
+
+
+
+
+
