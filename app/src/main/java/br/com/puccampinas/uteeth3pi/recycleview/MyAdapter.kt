@@ -1,85 +1,51 @@
-package br.com.puccampinas.uteeth3pi.recycleview;
+package br.com.puccampinas.uteeth3pi.recycleview
 
-import android.content.Context;
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.content.Context
+import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import br.com.puccampinas.uteeth3pi.MainActivity
+import br.com.puccampinas.uteeth3pi.R
+import br.com.puccampinas.uteeth3pi.recycleview.MyAdapter.MyViewHolder
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-
-import br.com.puccampinas.uteeth3pi.MainActivity;
-import br.com.puccampinas.uteeth3pi.R;
-
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-
-    Context context;
-    ArrayList<User> userArrayList;
-
-    public MyAdapter(Context context, ArrayList<User> userArrayList) {
-        this.context = context;
-        this.userArrayList = userArrayList;
+class MyAdapter(var context: Context, var userArrayList: ArrayList<User>) : RecyclerView.Adapter<MyViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val v = LayoutInflater.from(context).inflate(R.layout.item, parent, false)
+        return MyViewHolder(v)
     }
 
-    @NonNull
-    @Override
-    public MyAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View v = LayoutInflater.from(context).inflate(R.layout.item,parent,false);
-
-        return new MyViewHolder(v);
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val user = userArrayList[position]
+        holder.name.text = user.name
+        holder.phone.text = user.phone.toString()
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
-
-        User user= userArrayList.get(position);
-
-        holder.name.setText(user.name);
-        holder.phone.setText(String.valueOf(user.phone));
-
+    override fun getItemCount(): Int {
+        return userArrayList.size
     }
 
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var name: TextView
+        var phone: TextView
+        var btn_aceitar: TextView
+        var btn_recusar: TextView
 
-    @Override
-    public int getItemCount() {
-        return userArrayList.size();
-    }
-
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-
-        TextView name,phone,btn_aceitar,btn_recusar;
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            name = itemView.findViewById(R.id.tvfirstName);
-            phone = itemView.findViewById(R.id.tvphone);
-            btn_aceitar = itemView.findViewById(R.id.btn_aceitar);
-            btn_recusar = itemView.findViewById(R.id.btn_recusar);
-
-            btn_aceitar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), MainActivity.class);
-                    view.getContext().startActivity(intent);}
-            });
-
-            btn_recusar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), MainActivity.class);
-                    view.getContext().startActivity(intent);}
-            });
-
-
+        init {
+            name = itemView.findViewById(R.id.tvfirstName)
+            phone = itemView.findViewById(R.id.tvphone)
+            btn_aceitar = itemView.findViewById(R.id.btn_aceitar)
+            btn_recusar = itemView.findViewById(R.id.btn_recusar)
+            btn_aceitar.setOnClickListener { view ->
+                val intent = Intent(view.context, MainActivity::class.java)
+                view.context.startActivity(intent)
+            }
+            btn_recusar.setOnClickListener { view ->
+                val intent = Intent(view.context, MainActivity::class.java)
+                view.context.startActivity(intent)
+            }
         }
-
-
     }
-
-
 }

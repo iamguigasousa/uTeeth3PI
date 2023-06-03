@@ -1,30 +1,12 @@
-package br.com.puccampinas.uteeth3pi.recycleview;
+package br.com.puccampinas.uteeth3pi.recycleview
 
-public class User {
+class User {
+    var name: String? = null
+    var phone: String? = null
 
-    String name;
-    String phone;
-
-    public User(){}
-
-    public User(String name, String phone) {
-        this.name = name;
-        this.phone = phone;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    constructor() {}
+    constructor(name: String?, phone: String?) {
+        this.name = name
+        this.phone = phone
     }
 }
