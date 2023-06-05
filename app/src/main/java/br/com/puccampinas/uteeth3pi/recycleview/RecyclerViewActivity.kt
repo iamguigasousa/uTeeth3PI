@@ -1,11 +1,13 @@
 package br.com.puccampinas.uteeth3pi.recycleview
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.com.puccampinas.uteeth3pi.MainActivity
 import br.com.puccampinas.uteeth3pi.R
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.EventListener
@@ -21,17 +23,25 @@ class RecyclerViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_view)
+
         progressDialog = ProgressDialog(this)
         progressDialog!!.setCancelable(false)
         progressDialog!!.setMessage("Atualizando Data...")
         progressDialog!!.show()
+
+
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.setHasFixedSize(true)
         recyclerView.setLayoutManager(LinearLayoutManager(this))
+
+
         db = FirebaseFirestore.getInstance()
         userArrayList = ArrayList()
         myAdapter = MyAdapter(this@RecyclerViewActivity, userArrayList!!)
         recyclerView.setAdapter(myAdapter)
+
+
+
         EventChangeListener()
     }
 
@@ -52,4 +62,6 @@ class RecyclerViewActivity : AppCompatActivity() {
                     }
                 })
     }
+
+
 }

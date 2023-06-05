@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:text="Pedro"
                     android:fontFamily="@font/poppinsregular"
-                    android:id="@+id/tvfirstName"
+                    android:id="@+id/tv_name"
                     android:textColor="@color/black"
                     android:layout_marginStart="8dp"
                     android:textSize="20sp"
@@ -77,10 +77,27 @@
                 android:layout_height="wrap_content"
                 android:text="19991753723"
                 android:fontFamily="@font/poppinsregular"
-                android:id="@+id/tvphone"
+                android:id="@+id/tv_phone"
                 android:textColor="@color/black"
                 android:layout_marginStart="8dp"
                 android:textSize="20sp"
+                >
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_uid"
+
+                >
+
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_fcm"
+
                 >
 
             </TextView>
