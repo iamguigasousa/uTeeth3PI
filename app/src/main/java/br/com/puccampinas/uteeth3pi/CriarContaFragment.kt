@@ -109,6 +109,7 @@ class CriarContaFragment : Fragment() {
                                 Snackbar.make(requireView(),"Conta cadastrada! Pode fazer o login!",Snackbar.LENGTH_LONG).show()
                                 findNavController().navigate(R.id.action_CriarContaFragment_to_LoginFragment)
                             }
+
                         }
                 } else {
                     // If sign in fails, display a message to the user.

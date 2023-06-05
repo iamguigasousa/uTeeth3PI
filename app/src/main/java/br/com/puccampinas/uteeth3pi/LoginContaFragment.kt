@@ -109,6 +109,9 @@ class LoginContaFragment : Fragment() {
 
         if(auth.currentUser!=null) {
             findNavController().navigate(R.id.action_LoginFragment_to_homeMenuFragment)
+
         }
+
+
     }
 }

@@ -106,6 +106,7 @@ class AccountDetailsFragment : Fragment() {
                     Snackbar.make(requireView(),it.toString(), Snackbar.LENGTH_LONG).show()
                 }
 
+
         }
 
 

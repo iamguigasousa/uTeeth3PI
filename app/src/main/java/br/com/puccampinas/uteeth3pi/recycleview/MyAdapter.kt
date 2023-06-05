@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.puccampinas.uteeth3pi.MainActivity
 import br.com.puccampinas.uteeth3pi.R
 import br.com.puccampinas.uteeth3pi.recycleview.MyAdapter.MyViewHolder
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class MyAdapter(var context: Context, var userArrayList: ArrayList<User>) : RecyclerView.Adapter<MyViewHolder>() {
+class MyAdapter(val context: Context, val userArrayList: ArrayList<User>) : RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(context).inflate(R.layout.item, parent, false)
         return MyViewHolder(v)
@@ -27,7 +28,7 @@ class MyAdapter(var context: Context, var userArrayList: ArrayList<User>) : Recy
 
         holder.name.text = user.name
         holder.phone.text = user.phone
-        holder.uid.text = user.uid
+        holder.uidSocorrista.text = user.uidSocorrista
         holder.fcmToken.text = user.fcmToken
 
     }
@@ -37,46 +38,86 @@ class MyAdapter(var context: Context, var userArrayList: ArrayList<User>) : Recy
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+
+
         val name: TextView = itemView.findViewById(R.id.tv_name)
         val phone: TextView = itemView.findViewById(R.id.tv_phone)
-        val uid: TextView = itemView.findViewById(R.id.tv_uid)
+        val uidSocorrista: TextView = itemView.findViewById(R.id.tv_uid)
         val fcmToken: TextView = itemView.findViewById(R.id.tv_fcm)
+        var btn_aceitar: TextView = itemView.findViewById(R.id.btn_aceitar)
 
-
-
-        var btn_aceitar: Button
 
         init {
-            btn_aceitar.setOnClickListener{
-                val db = Firebase.firestore
-                val docRef = db.collection("dentista").document()
 
-                // Atualizar o documento
-                docRef.update("nome", "Renata Teste Button")
+
+            val db = Firebase.firestore
+
+
+
+
+
+
+
+
+
+            btn_aceitar.setOnClickListener { view ->
+                btn_aceitar = uidSocorrista
+                val userId = FirebaseAuth.getInstance().currentUser!!.uid
+                val documentRef = db.collection("Chamados").document()
+
+                val subcollectionRef = documentRef.collection("dentista")
+
+                val intent = Intent(view.context, MainActivity::class.java)
+                view.context.startActivity(intent)
+
+                val novoDocumentoRef = subcollectionRef.document(userId)
+                val novoDocumentoDados = hashMapOf(
+                    "name" to "valor1",
+                    "uid" to "valor2",
+                    "fcmToken" to "valor2",
+                    "curriculum" to "valor2"
+
+                )
+                novoDocumentoRef.set(novoDocumentoDados)
                     .addOnSuccessListener {
-                        // Atualização bem-sucedida
+                        // Documento adicionado com sucesso à subcoleção
                     }
                     .addOnFailureListener { e ->
-                        // Ocorreu um erro ao atualizar o documento
+                        // Ocorreu um erro ao adicionar o documento à subcoleção
                     }
+
+
+
+            }
         }
-
-
-
-
-
-
-    }
-
-
-
-
-
-
-
-
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
