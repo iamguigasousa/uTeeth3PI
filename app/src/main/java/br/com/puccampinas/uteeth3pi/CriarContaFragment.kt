@@ -106,7 +106,7 @@ class CriarContaFragment : Fragment() {
                             // conta criada com sucesso.
                             if(res.result.status == "SUCCESS"){
                                 hideKeyboard()
-                                Snackbar.make(requireView(),"Conta cadastrada! Pode fazer o login!",Snackbar.LENGTH_LONG).show()
+                                Snackbar.make(requireView(),"Conta cadastrada!",Snackbar.LENGTH_LONG).show()
                                 findNavController().navigate(R.id.action_CriarContaFragment_to_LoginFragment)
                             }
 
