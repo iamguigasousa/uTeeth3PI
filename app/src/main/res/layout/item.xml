@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,50 +8,46 @@
     android:layout_marginTop="40dp"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
-    android:layout_marginBottom="16dp"
-    >
+    android:layout_marginBottom="16dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginVertical="6dp"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginBottom="10dp">
+                android:text="Nome:"
+                android:fontFamily="@font/poppinsmedium"
+                android:textColor="@color/black"
+                android:textSize="20sp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nome:"
-                        android:fontFamily="@font/poppinsmedium"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        >
+            </TextView>
 
-                    </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pedro"
+                android:fontFamily="@font/poppinsregular"
+                android:id="@+id/tv_name"
+                android:textColor="@color/black"
+                android:layout_marginStart="8dp"
+                android:textSize="20sp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pedro"
-                    android:fontFamily="@font/poppinsregular"
-                    android:id="@+id/tv_name"
-                    android:textColor="@color/black"
-                    android:layout_marginStart="8dp"
-                    android:textSize="20sp"
-                    >
-
-                </TextView>
+            </TextView>
 
 
-            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -80,37 +75,16 @@
                 android:id="@+id/tv_phone"
                 android:textColor="@color/black"
                 android:layout_marginStart="8dp"
-                android:textSize="20sp"
-                >
+                android:textSize="20sp">
 
             </TextView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_fcm"
-
-                >
-
-            </TextView>
-
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_uid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/poppinsregular"
-            android:text="uid"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-
-            >
-
-        </TextView>
-
+        <ImageView
+            android:id="@+id/tv_photo"
+            android:layout_width="350dp"
+            android:layout_height="350dp" />
 
     </LinearLayout>
 
@@ -137,6 +111,7 @@
                 android:textColor="@color/blue_200"
                 android:textSize="20sp"
                 android:textStyle="bold"></TextView>
+
             <TextView
                 android:id="@+id/btn_recusar"
                 android:layout_width="wrap_content"
@@ -145,11 +120,8 @@
                 android:text="Recusar"
                 android:textSize="20sp"
                 android:fontFamily="@font/poppinsregular"
-                android:textStyle="bold"
-                >
-            </TextView>
+                android:textStyle="bold"></TextView>
         </LinearLayout>
-
 
 
     </LinearLayout>
