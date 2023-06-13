@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.puccampinas.uteeth3pi.MainActivity
 import br.com.puccampinas.uteeth3pi.R
 import br.com.puccampinas.uteeth3pi.data
+import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -32,22 +33,25 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
         val item = items[position]
         val name = item.getString("name")
         val phone = item.getString("phone")
+        val uid = item.getString("uid")
+        val photo = item.getString("photoPath")
 
         lateinit var auth: FirebaseAuth
 
         holder.tv_name.text = name
         holder.tv_phone.text = phone
+        Glide.with(holder.itemView).load(photo).into(holder.tv_photo)
 
         //ação do botão aceitar
 
-        holder.btn_aceitar.setOnClickListener {view ->
+        holder.btn_aceitar.setOnClickListener { view ->
 
             var gson = GsonBuilder().enableComplexMapKeySerialization().create()
             auth = Firebase.auth
             val user = auth.currentUser
-            val uid = user!!.uid
+            val userUid = user!!.uid
 
-            val userRef = db.collection("dentista").document(uid)
+            val userRef = db.collection("dentista").document(userUid)
 
             userRef.get()
                 .addOnSuccessListener { document ->
@@ -55,41 +59,47 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
 
                         FirebaseMessaging.getInstance().token.addOnCompleteListener(
                             OnCompleteListener { task ->
-                            if (!task.isSuccessful) {
-                                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
-                                return@OnCompleteListener
-                            }
+                                if (!task.isSuccessful) {
+                                    Log.w(
+                                        TAG,
+                                        "Fetching FCM registration token failed",
+                                        task.exception
+                                    )
+                                    return@OnCompleteListener
+                                }
 
-                            // Get new FCM registration token
-                            val token = task.result
-
-
-
-
-                        var data = gson.fromJson((JSONObject(document.data).toString()),data::class.java)
-
-                        val documentRef = db.collection("Chamados").document("K00aG0V0i0q8TX1mdJPX").
-                        collection("dentista").document(uid)
-
-                        val userData = hashMapOf(
-                            "name" to data.name,
-                            "uid" to data.uid,
-                            "fcmToken" to token,
-                            "curriculum" to data.curriculum
+                                // Get new FCM registration token
+                                val token = task.result
 
 
-                        )
+                                var data = gson.fromJson(
+                                    (JSONObject(document.data).toString()),
+                                    data::class.java
+                                )
 
-                        documentRef.set(userData)
-                            .addOnSuccessListener {
+                                val documentRef =
+                                    db.collection("Chamados").document(uid.toString())
+                                        .collection("dentista").document(userUid)
 
-                            }
-                            .addOnFailureListener { e ->
-                                // Ocorreu um erro ao adicionar o documento à subcoleção
-                            }
+                                val userData = hashMapOf(
+                                    "name" to data.name,
+                                    "uid" to data.uid,
+                                    "fcmToken" to token,
+                                    "curriculum" to data.curriculum
 
-                        val intent = Intent(view.context, MainActivity::class.java)
-                        view.context.startActivity(intent)
+
+                                )
+
+                                documentRef.set(userData)
+                                    .addOnSuccessListener {
+
+                                    }
+                                    .addOnFailureListener { e ->
+                                        // Ocorreu um erro ao adicionar o documento à subcoleção
+                                    }
+
+                                val intent = Intent(view.context, MainActivity::class.java)
+                                view.context.startActivity(intent)
                             })
 
                     } else {
