@@ -10,7 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class RecyclerViewActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ItemAdapter
+    private lateinit var adapter: MyAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class RecyclerViewActivity : AppCompatActivity() {
 
             if (snapshot != null) {
                 val items = snapshot.documents
-                adapter = ItemAdapter(items)
+                adapter = MyAdapter(items)
                 recyclerView.adapter = adapter
             }
         }
