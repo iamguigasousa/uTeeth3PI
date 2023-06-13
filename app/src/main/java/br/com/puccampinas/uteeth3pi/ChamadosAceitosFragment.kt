@@ -1,28 +1,46 @@
 package br.com.puccampinas.uteeth3pi
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.navigation.fragment.findNavController
+import br.com.puccampinas.uteeth3pi.databinding.FragmentAccountDetailsBinding
+import br.com.puccampinas.uteeth3pi.databinding.FragmentChamadosAceitosBinding
+import br.com.puccampinas.uteeth3pi.databinding.FragmentCriarContaBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import org.json.JSONObject
 
 
 class ChamadosAceitosFragment : Fragment() {
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private var _binding: FragmentChamadosAceitosBinding? = null
 
-    }
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chamados_aceitos, container, false)
+        _binding = FragmentChamadosAceitosBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
+
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".recycleview.RecyclerViewActivity"
+    tools:context=".recycleview.RecyclerViewChamadosActivity"
     android:background="@drawable/gradient_background">
 
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewChamados"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,10 +19,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/item" />
+        tools:listitem="@layout/item2" />
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/imgb_arrow"
+        android:id="@+id/imgb_arrow2"
         android:layout_width="77dp"
         android:layout_height="70dp"
         android:background="#00000000"
@@ -32,11 +32,6 @@
         tools:ignore="MissingConstraints">
     </androidx.appcompat.widget.AppCompatImageButton>
 
-<!--    <FrameLayout-->
-<!--        android:id="@+id/container2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-<!--    </FrameLayout>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

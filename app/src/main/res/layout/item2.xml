@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -83,10 +84,48 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/tv_photo"
-            android:layout_width="350dp"
-            android:layout_height="350dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/btn_enviarLoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:drawableTint="@color/blue_200"
+                android:fontFamily="@font/poppinsregular"
+                android:text="Enviar Localização  "
+                android:textColor="@color/blue_200"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:drawableRightCompat="@android:drawable/ic_dialog_map">
+
+            </TextView>
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:drawableRightCompat="@android:drawable/ic_dialog_map">
+
+            </TextView>
+
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -103,26 +142,13 @@
             android:elevation="10dp"
             android:layout_margin="10dp">
 
-            <TextView
-                android:id="@+id/btn_aceitar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/poppinsregular"
-                android:text="Aceitar"
-                android:textColor="@color/blue_200"
-                android:textSize="20sp"
-                android:textStyle="bold"></TextView>
+            <ImageView
+                android:id="@+id/imgViewChamados"
+                android:layout_width="130dp"
+                android:layout_height="90dp">
+            </ImageView>
 
-            <TextView
-                android:id="@+id/btn_recusar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/red"
-                android:text="Recusar"
-                android:textSize="20sp"
-                android:fontFamily="@font/poppinsregular"
-                android:textStyle="bold"></TextView>
+
         </LinearLayout>
 
 

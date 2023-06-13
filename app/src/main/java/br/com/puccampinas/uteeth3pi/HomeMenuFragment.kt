@@ -105,6 +105,9 @@ class HomeMenuFragment : Fragment() {
             findNavController().navigate(R.id.action_homeMenuFragment_to_recyclerViewActivity)
         }
 
+        binding.btnChamados.setOnClickListener {
+            findNavController().navigate(R.id.action_homeMenuFragment_to_recyclerViewChamadosActivity)
+        }
 
 
         binding.btnDeslogar.setOnClickListener {

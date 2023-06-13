@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.puccampinas.uteeth3pi.ChamadosAceitosFragment
 import br.com.puccampinas.uteeth3pi.MainActivity
 import br.com.puccampinas.uteeth3pi.R
 import br.com.puccampinas.uteeth3pi.data
@@ -98,8 +99,9 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
                                         // Ocorreu um erro ao adicionar o documento à subcoleção
                                     }
 
-                                val intent = Intent(view.context, MainActivity::class.java)
-                                view.context.startActivity(intent)
+//                                val intent = Intent(view.context, MainActivity::class.java)
+//
+//                                view.context.startActivity(intent)
                             })
 
                     } else {
