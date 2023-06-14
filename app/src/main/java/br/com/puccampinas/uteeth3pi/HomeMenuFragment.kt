@@ -1,7 +1,12 @@
 package br.com.puccampinas.uteeth3pi
 
+import android.app.Activity
 import android.content.ContentValues.TAG
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +17,7 @@ import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import br.com.puccampinas.uteeth3pi.databinding.FragmentHomeMenuBinding
 import br.com.puccampinas.uteeth3pi.datastore.UserPreferencesRepository
+import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -22,9 +28,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import com.google.gson.GsonBuilder
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.util.UUID
 
 
 class HomeMenuFragment : Fragment() {
@@ -39,6 +50,9 @@ class HomeMenuFragment : Fragment() {
     private lateinit var bt_deslogar: Button
     private lateinit var auth: FirebaseAuth
     private var gson = GsonBuilder().enableComplexMapKeySerialization().create()
+    private val REQUEST_IMAGE_CAPTURE = 1
+
+
 
     private lateinit var functions: FirebaseFunctions
     private lateinit var userPreferencesRepository: UserPreferencesRepository
@@ -96,6 +110,11 @@ class HomeMenuFragment : Fragment() {
                 Log.d(TAG, "get failed with ", exception)
             }
 
+        binding.imageView.setOnClickListener {
+            dispatchTakePictureIntent()
+            loadImageFromStorage(uid)
+        }
+
 
         binding.btnAccount.setOnClickListener {
             findNavController().navigate(R.id.action_homeMenuFragment_to_accountDetailsFragment)
@@ -120,6 +139,70 @@ class HomeMenuFragment : Fragment() {
 
 
     }
+
+
+    private fun loadImageFromStorage(uid: String) {
+        val storageRef = FirebaseStorage.getInstance().reference
+        val imageRef = storageRef.child("images/$uid.jpg") // Substitua "images" pelo caminho correto para suas imagens
+
+        val localFile = File.createTempFile("tempImage", "jpg") // Crie um arquivo temporário para armazenar a imagem
+
+        imageRef.getFile(localFile)
+            .addOnSuccessListener {
+                // A imagem foi baixada com sucesso, você pode exibi-la na ImageView do seu layout
+                val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                binding.imageView.setImageBitmap(bitmap)
+            }
+            .addOnFailureListener { exception ->
+                // Ocorreu uma falha ao baixar a imagem
+                // Lide com o erro de acordo com sua necessidade
+                Log.e(TAG, "Error downloading image: ${exception.message}", exception)
+            }
+    }
+
+    private fun dispatchTakePictureIntent() {
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (takePictureIntent.resolveActivity(requireActivity().packageManager) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            binding.imageView.setImageBitmap(imageBitmap)
+
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+            val data = byteArrayOutputStream.toByteArray()
+
+            // Armazenar a foto no Firebase Storage
+            val storageRef = Firebase.storage.reference
+            val imageRef = storageRef.child("${auth.currentUser?.uid}/${UUID.randomUUID()}.jpg")
+
+            val uploadTask = imageRef.putBytes(data)
+            uploadTask.continueWithTask(Continuation {
+                if (!it.isSuccessful) {
+                    it.exception?.let { e ->
+                        throw e
+                    }
+                }
+                imageRef.downloadUrl
+            }).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result
+                    // Aqui você pode usar o downloadUri para salvar a URL da imagem no Firestore ou onde mais for necessário.
+                    Log.d(TAG, "Imagem enviada com sucesso. URL: $downloadUri")
+                    Snackbar.make(requireView(),"Foto Enviada com Sucesso!",Snackbar.LENGTH_LONG).show()
+                } else {
+                    Log.e(TAG, "Erro ao enviar a imagem", task.exception)
+                }
+            }
+        }
+    }
+
+
 
 
     private fun OnStatus(status: Boolean) : Task<CustomResponse> {
