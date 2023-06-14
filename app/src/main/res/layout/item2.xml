@@ -94,7 +94,7 @@
             >
 
             <TextView
-                android:id="@+id/btn_enviarLoc"
+                android:id="@+id/btn_localizacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

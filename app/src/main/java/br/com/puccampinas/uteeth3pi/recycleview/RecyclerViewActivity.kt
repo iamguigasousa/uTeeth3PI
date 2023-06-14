@@ -38,9 +38,7 @@ class RecyclerViewActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val firestore = FirebaseFirestore.getInstance()
-        val collectionRef = firestore.collection("Chamados")
-
+        chamarFirebase()
 
 
 
@@ -60,6 +58,11 @@ class RecyclerViewActivity : AppCompatActivity() {
 
 
 
+
+    }
+    private fun chamarFirebase(){
+        val firestore = FirebaseFirestore.getInstance()
+        val collectionRef = firestore.collection("Chamados")
         collectionRef.addSnapshotListener { snapshot, exception ->
             if (exception != null) {
                 // Tratar erros

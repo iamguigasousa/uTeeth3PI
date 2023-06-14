@@ -1,17 +1,17 @@
 package br.com.puccampinas.uteeth3pi.recycleview
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import br.com.puccampinas.uteeth3pi.HomeMenuFragment
 import br.com.puccampinas.uteeth3pi.R
 import com.google.firebase.firestore.FirebaseFirestore
 
 
 private lateinit var btnArrow: ImageButton
 private lateinit var recyclerView: RecyclerView
+private lateinit var adapter: ChamadosAdapter
 
 class RecyclerViewChamadosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,9 +24,7 @@ class RecyclerViewChamadosActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val firestore = FirebaseFirestore.getInstance()
-        val collectionRef = firestore.collection("Chamados")
-
+        chamarFirebase()
 
 
 
@@ -42,5 +40,21 @@ class RecyclerViewChamadosActivity : AppCompatActivity() {
 //
 //        }
 
+    }
+    private fun chamarFirebase(){
+        val firestore = FirebaseFirestore.getInstance()
+        val collectionRef = firestore.collection("Chamados")
+        collectionRef.addSnapshotListener { snapshot, exception ->
+            if (exception != null) {
+                // Tratar erros
+                return@addSnapshotListener
+            }
+
+            if (snapshot != null) {
+                val items = snapshot.documents
+                adapter = ChamadosAdapter(items)
+                recyclerView.adapter = adapter
+            }
+        }
     }
 }
