@@ -36,8 +36,7 @@ class ChamadosAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.
         val name = item.getString("name")
         val phone = item.getString("phone")
         val uid = item.getString("uid")
-        val latitude = item.latitude
-        val longitude = item.longitude
+
 
 
         lateinit var auth: FirebaseAuth
@@ -48,7 +47,7 @@ class ChamadosAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.
         holder.btn_localizacao.setOnClickListener {
 
 
-            enviarLocalizacaoParaFirestore(latitude, longitude)
+//            enviarLocalizacaoParaFirestore(latitude, longitude)
         }
     }
 
@@ -76,6 +75,7 @@ class ChamadosAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.
     override fun getItemCount(): Int {
         return items.size
     }
+
 
 
 }

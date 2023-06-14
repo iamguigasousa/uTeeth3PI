@@ -86,7 +86,8 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
                                     "name" to data.name,
                                     "uid" to data.uid,
                                     "fcmToken" to token,
-                                    "curriculum" to data.curriculum
+                                    "curriculum" to data.curriculum,
+                                    "phone" to data.phone
 
 
                                 )
@@ -99,9 +100,9 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
                                         // Ocorreu um erro ao adicionar o documento à subcoleção
                                     }
 
-//                                val intent = Intent(view.context, MainActivity::class.java)
-//
-//                                view.context.startActivity(intent)
+                                val intent = Intent(view.context, MainActivity::class.java)
+
+                                view.context.startActivity(intent)
                             })
 
                     } else {

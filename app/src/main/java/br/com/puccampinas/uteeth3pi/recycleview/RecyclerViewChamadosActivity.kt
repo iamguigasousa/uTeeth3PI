@@ -69,4 +69,6 @@ class RecyclerViewChamadosActivity : AppCompatActivity() {
             }
         }
     }
+
+
 }
