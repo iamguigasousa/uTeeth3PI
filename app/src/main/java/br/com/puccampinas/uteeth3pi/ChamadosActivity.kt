@@ -10,6 +10,7 @@ import br.com.puccampinas.uteeth3pi.databinding.ActivityChamadosBinding
 import com.google.android.gms.location.*
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -86,6 +87,9 @@ class ChamadosActivity : AppCompatActivity() {
                 for (document in result) {
                     binding.tvName.text = document.getString("name").toString()
                     binding.tvPhone.text = document.getString("phone").toString()
+                    val uid = document.getString("uid")
+
+
 
                     // Faça algo com os dados obtidos, como atualizar os TextViews
                 }
@@ -96,6 +100,7 @@ class ChamadosActivity : AppCompatActivity() {
 
 
     }
+}
 
     private fun getLocalizacaoAtual() {
         if (ActivityCompat.checkSelfPermission(
@@ -130,10 +135,13 @@ class ChamadosActivity : AppCompatActivity() {
 
     private fun enviarLocalizacaoParaFirestore(latitude: Double, longitude: Double) {
         val db = FirebaseFirestore.getInstance()
+
+
         val localizacao = hashMapOf(
             "latitude" to latitude.toString(),
             "longitude" to longitude.toString()
         )
+
 
         db.collection("Chamados").document("K00aG0V0i0q8TX1mdJPX")
             .collection("localização")
