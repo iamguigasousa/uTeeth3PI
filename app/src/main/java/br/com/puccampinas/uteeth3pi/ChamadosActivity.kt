@@ -100,7 +100,7 @@ class ChamadosActivity : AppCompatActivity() {
 
 
     }
-}
+
 
     private fun getLocalizacaoAtual() {
         if (ActivityCompat.checkSelfPermission(
