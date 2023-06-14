@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
@@ -35,6 +36,8 @@ class ChamadosAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.
         val name = item.getString("name")
         val phone = item.getString("phone")
         val uid = item.getString("uid")
+        val latitude = item.latitude
+        val longitude = item.longitude
 
 
         lateinit var auth: FirebaseAuth
@@ -42,86 +45,37 @@ class ChamadosAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.
         holder.tv_name.text = name
         holder.tv_phone.text = phone
 
-        fun localização(){
-            holder.btn_localizacao.setOnClickListener { view ->
-
-                var gson = GsonBuilder().enableComplexMapKeySerialization().create()
-                auth = Firebase.auth
-                val user = auth.currentUser
-                val userUid = user!!.uid
-
-                val userRef = db.collection("dentista").document(userUid)
-
-                userRef.get()
-                    .addOnSuccessListener { document ->
-                        if (document != null) {
-
-                            FirebaseMessaging.getInstance().token.addOnCompleteListener(
-                                OnCompleteListener { task ->
-                                    if (!task.isSuccessful) {
-                                        Log.w(
-                                            TAG,
-                                            "Fetching FCM registration token failed",
-                                            task.exception
-                                        )
-                                        return@OnCompleteListener
-                                    }
-
-                                    // Get new FCM registration token
-                                    val token = task.result
+        holder.btn_localizacao.setOnClickListener {
 
 
-                                    var data = gson.fromJson(
-                                        (JSONObject(document.data).toString()),
-                                        data::class.java
-                                    )
+            enviarLocalizacaoParaFirestore(latitude, longitude)
+        }
+    }
 
-                                    val documentRef =
-                                        db.collection("Chamados").document(uid.toString())
-                                            .collection("dentista").document(userUid)
+        fun enviarLocalizacaoParaFirestore(latitude: Double, longitude: Double) {
+            val db = FirebaseFirestore.getInstance()
 
-                                    val userData = hashMapOf(
-                                        "name" to data.name,
-                                        "uid" to data.uid,
-                                        "fcmToken" to token,
-                                        "curriculum" to data.curriculum
+            val localizacao = hashMapOf(
+                "latitude" to latitude,
+                "longitude" to longitude
+            )
 
-
-                                    )
-
-                                    documentRef.set(userData)
-                                        .addOnSuccessListener {
-
-                                        }
-                                        .addOnFailureListener { e ->
-                                            // Ocorreu um erro ao adicionar o documento à subcoleção
-                                        }
-
-                                    val intent = Intent(view.context, MainActivity::class.java)
-
-                                    view.context.startActivity(intent)
-                                })
-
-                        } else {
-                            Log.d(ContentValues.TAG, "No such document")
-                        }
-                    }
-                    .addOnFailureListener { exception ->
-                        Log.d(ContentValues.TAG, "get failed with ", exception)
-                    }
-
-            }
-
+            db.collection("localizacoes")
+                .add(localizacao)
+                .addOnSuccessListener { documentReference ->
+                    // Sucesso ao enviar a localização
+                }
+                .addOnFailureListener { e ->
+                    // Erro ao enviar a localização
+                }
         }
 
-        //ação do botão
-        localização()
 
 
-
-    }
 
     override fun getItemCount(): Int {
         return items.size
     }
+
+
 }

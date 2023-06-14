@@ -62,7 +62,7 @@ class RecyclerViewActivity : AppCompatActivity() {
     }
     private fun chamarFirebase(){
         val firestore = FirebaseFirestore.getInstance()
-        val collectionRef = firestore.collection("Chamados")
+        val collectionRef = firestore.collection("Chamados").whereEqualTo("status","open")
         collectionRef.addSnapshotListener { snapshot, exception ->
             if (exception != null) {
                 // Tratar erros

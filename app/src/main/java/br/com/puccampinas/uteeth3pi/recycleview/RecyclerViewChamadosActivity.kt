@@ -6,12 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.puccampinas.uteeth3pi.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.gson.GsonBuilder
 
 
 private lateinit var btnArrow: ImageButton
 private lateinit var recyclerView: RecyclerView
 private lateinit var adapter: ChamadosAdapter
+private lateinit var auth: FirebaseAuth
 
 class RecyclerViewChamadosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,8 +47,15 @@ class RecyclerViewChamadosActivity : AppCompatActivity() {
 
     }
     private fun chamarFirebase(){
+        var gson = GsonBuilder().enableComplexMapKeySerialization().create()
+        auth = Firebase.auth
+        val user = auth.currentUser
+        val userUid = user!!.uid
+
+
         val firestore = FirebaseFirestore.getInstance()
         val collectionRef = firestore.collection("Chamados")
+            .whereEqualTo("uidDentista",userUid).whereEqualTo("status","Accept")
         collectionRef.addSnapshotListener { snapshot, exception ->
             if (exception != null) {
                 // Tratar erros
