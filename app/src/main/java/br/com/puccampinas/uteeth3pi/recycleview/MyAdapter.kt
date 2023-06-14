@@ -5,7 +5,10 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.puccampinas.uteeth3pi.MainActivity
 import br.com.puccampinas.uteeth3pi.R
@@ -28,6 +31,9 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
         return MyViewHolder(itemView)
     }
 
+
+
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val db = Firebase.firestore
         val item = items[position]
@@ -39,6 +45,8 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
         val photo2 = item.getString("photoPath2")
 
         lateinit var auth: FirebaseAuth
+
+
 
         holder.tv_name.text = name
         holder.tv_phone.text = phone
@@ -91,8 +99,6 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
                                     "fcmToken" to token,
                                     "curriculum" to data.curriculum,
                                     "phone" to data.phone
-
-
                                 )
 
                                 documentRef.set(userData)
@@ -103,9 +109,8 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
                                         // Ocorreu um erro ao adicionar o documento à subcoleção
                                     }
 
-                                val intent = Intent(view.context, MainActivity::class.java)
+                                removeCardView(holder.itemView.findViewById(R.id.cardview))
 
-                                view.context.startActivity(intent)
                             })
 
                     } else {
@@ -124,4 +129,9 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
     override fun getItemCount(): Int {
         return items.size
     }
+
+    private fun removeCardView(cardView: CardView) {
+        cardView.visibility = View.GONE
+    }
+
 }
