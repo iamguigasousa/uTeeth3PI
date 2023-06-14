@@ -1,48 +1,25 @@
 package br.com.puccampinas.uteeth3pi
 
 import android.Manifest
-import android.content.ContentValues
-import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
-import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import br.com.puccampinas.uteeth3pi.databinding.ActivityChamadosBinding
-import br.com.puccampinas.uteeth3pi.databinding.ActivityMainBinding
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.location.*
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.messaging.FirebaseMessaging
-import com.google.gson.GsonBuilder
-import org.json.JSONObject
 
 class ChamadosActivity : AppCompatActivity() {
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var firestore: FirebaseFirestore
-    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private lateinit var tvLatitude: TextView
-    private lateinit var tvLongitude: TextView
-    private lateinit var btnLocalizacao: TextView
     private lateinit var auth: FirebaseAuth
-
     private lateinit var db: FirebaseFirestore
     private lateinit var binding: ActivityChamadosBinding
-
-
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,16 +27,17 @@ class ChamadosActivity : AppCompatActivity() {
         firestore = Firebase.firestore
         setContentView(binding.root)
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
         auth = FirebaseAuth.getInstance()
 
         getDados()
 
+        binding.btnLocalizacao.setOnClickListener {
+            sendLocalizacao()
 
-        btnLocalizacao = findViewById(R.id.btn_localizacao)
-        btnLocalizacao.setOnClickListener {
-            getCurrentLocation()
+
         }
 
 
@@ -68,72 +46,31 @@ class ChamadosActivity : AppCompatActivity() {
 
     }
 
-    private fun getCurrentLocation(){
-        if (checkPermissions()){
-            if (isLocationEnabled()){
-
-                if (ActivityCompat.checkSelfPermission(
-                        this,
-                        Manifest.permission.ACCESS_FINE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                        this,
-                        Manifest.permission.ACCESS_COARSE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    requestPermission()
-                    return
-                }
-                fusedLocationProviderClient.lastLocation.addOnCompleteListener(this){ task ->
-                    val location: Location? = task.result
-                    if (location == null){
-                        Toast.makeText(this, "Nenhum dado recebido", Toast.LENGTH_SHORT).show()
-                    }
-                    else{
-                        Toast.makeText(this, "Localização Enviada", Toast.LENGTH_SHORT).show()
-                        tvLatitude.text = location.latitude.toString()
-                        tvLongitude.text = location.longitude.toString()
-
-                        val latitude = location.latitude.toString()
-                        val longitude = location.longitude.toString()
-
-                        enviarLocalizacaoParaFirestore(latitude, longitude)
-                    }
-
-                }
-
-            }
-            else{
-                Toast.makeText(this, "Turn on location", Toast.LENGTH_SHORT).show()
-                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                startActivity(intent)
-            }
+    private fun sendLocalizacao(){
+        // Verificar permissões de localização
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Solicitar permissões de localização
+            val REQUEST_LOCATION_PERMISSION = 123
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                REQUEST_LOCATION_PERMISSION
+            )
+        } else {
+            // Permissões de localização concedidas, obter a localização atual
+            getLocalizacaoAtual()
         }
-        else{
-            requestPermission()
 
-        }
-    }
-
-
-    private fun enviarLocalizacaoParaFirestore(latitude: String, longitude: String) {
-        val db = FirebaseFirestore.getInstance()
-
-        val localizacao = hashMapOf(
-            "latitude" to latitude,
-            "longitude" to longitude
-        )
-
-        db.collection("Chamados").document("K00aG0V0i0q8TX1mdJPX")
-            .collection("localização")
-            .add(localizacao)
-            .addOnSuccessListener { documentReference ->
-                Toast.makeText(this, "Localização enviada para o Firestore", Toast.LENGTH_SHORT).show()
-
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this, "Erro ao enviar para o Firestore", Toast.LENGTH_SHORT).show()
-
-            }
     }
 
     private fun getDados(){
@@ -160,50 +97,61 @@ class ChamadosActivity : AppCompatActivity() {
 
     }
 
-
-    private fun isLocationEnabled():Boolean{
-        val locationManager:LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)||locationManager.isProviderEnabled(
-            LocationManager.NETWORK_PROVIDER
-        )
-    }
-
-    private fun requestPermission() {
-        ActivityCompat.requestPermissions(
-            this, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                android.Manifest.permission.ACCESS_FINE_LOCATION),
-            PERMISSION_REQUEST_ACCESS_LOCATION
-        )
-    }
-
-    companion object{
-        private const val PERMISSION_REQUEST_ACCESS_LOCATION=100
-    }
-
-    private fun checkPermissions(): Boolean{
-        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)
-            ==PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED)
-        {
-            return true
+    private fun getLocalizacaoAtual() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
         }
-        return false
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location: Location? ->
+                // Enviar a localização para o Firebase Firestore
+                if (location != null) {
+                    enviarLocalizacaoParaFirestore(location.latitude, location.longitude)
+                }
+            }
+            .addOnFailureListener { exception: Exception ->
+                // Lidar com falha ao obter a localização
+                // ...
+            }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    private fun enviarLocalizacaoParaFirestore(latitude: Double, longitude: Double) {
+        val db = FirebaseFirestore.getInstance()
+        val localizacao = hashMapOf(
+            "latitude" to latitude.toString(),
+            "longitude" to longitude.toString()
+        )
 
-        if(requestCode== PERMISSION_REQUEST_ACCESS_LOCATION){
-            if (grantResults.isNotEmpty() && grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(applicationContext,"Granted", Toast.LENGTH_SHORT).show()
-                getCurrentLocation()
+        db.collection("Chamados").document("K00aG0V0i0q8TX1mdJPX")
+            .collection("localização")
+            .add(localizacao)
+            .addOnSuccessListener { documentReference ->
+
+                Snackbar.make(
+                    findViewById(android.R.id.content),
+                    "Localização enviada com sucesso!",
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
-            else{
-                Toast.makeText(applicationContext,"Denied", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { e ->
+                Snackbar.make(
+                    findViewById(android.R.id.content),
+                    "Falha ao enviar a localização!",
+                    Snackbar.LENGTH_SHORT
+                ).show()
             }
-        }
     }
 }
