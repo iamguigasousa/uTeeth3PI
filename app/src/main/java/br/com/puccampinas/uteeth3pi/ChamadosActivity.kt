@@ -35,6 +35,7 @@ class ChamadosActivity : AppCompatActivity() {
     private lateinit var tvLongitude: TextView
     private lateinit var btnLocalizacao: TextView
     private lateinit var auth: FirebaseAuth
+
     private lateinit var db: FirebaseFirestore
     private lateinit var binding: ActivityChamadosBinding
 
@@ -46,9 +47,12 @@ class ChamadosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChamadosBinding.inflate(layoutInflater)
+        firestore = Firebase.firestore
         setContentView(binding.root)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+
+        auth = FirebaseAuth.getInstance()
 
         getDados()
 
@@ -133,6 +137,7 @@ class ChamadosActivity : AppCompatActivity() {
     }
 
     private fun getDados(){
+
         val user = auth.currentUser
         val userUid = user!!.uid
 
