@@ -37,7 +37,7 @@ class ChamadosActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var binding: ActivityChamadosBinding
-    private var gson = GsonBuilder().enableComplexMapKeySerialization().create()
+
 
 
 
@@ -50,7 +50,7 @@ class ChamadosActivity : AppCompatActivity() {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
-
+        getDados()
 
 
         btnLocalizacao = findViewById(R.id.btn_localizacao)
@@ -58,7 +58,7 @@ class ChamadosActivity : AppCompatActivity() {
             getCurrentLocation()
         }
 
-        getDados()
+
 
 
 

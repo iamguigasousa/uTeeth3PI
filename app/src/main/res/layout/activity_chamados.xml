@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pedro"
+                    android:text="Nome"
                     android:fontFamily="@font/poppinsregular"
                     android:id="@+id/tv_name"
                     android:textColor="@color/black"
@@ -80,7 +80,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="19991753723"
+                    android:text="Número"
                     android:fontFamily="@font/poppinsregular"
                     android:id="@+id/tv_phone"
                     android:textColor="@color/black"
@@ -164,4 +164,4 @@
 
     </androidx.cardview.widget.CardView>
 
-</ScrollView>
+</LinearLayout>
