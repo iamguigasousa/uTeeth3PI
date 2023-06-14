@@ -92,8 +92,8 @@
             android:id="@+id/action_homeMenuFragment_to_recyclerViewActivity"
             app:destination="@id/recyclerViewActivity" />
         <action
-            android:id="@+id/action_homeMenuFragment_to_recyclerViewChamadosActivity"
-            app:destination="@id/recyclerViewChamadosActivity" />
+            android:id="@+id/action_homeMenuFragment_to_ChamadosActivity"
+            app:destination="@id/ChamadosActivity" />
     </fragment>
     <fragment
         android:id="@+id/accountDetailsFragment"
@@ -110,10 +110,10 @@
         android:label="activity_recycler_view"
         tools:layout="@layout/activity_recycler_view" />
     <activity
-        android:id="@+id/recyclerViewChamadosActivity"
-        android:name="br.com.puccampinas.uteeth3pi.recycleview.RecyclerViewChamadosActivity"
+        android:id="@+id/ChamadosActivity"
+        android:name="br.com.puccampinas.uteeth3pi.ChamadosActivity"
         android:label="activity_recycler_view_chamados"
-        tools:layout="@layout/activity_recycler_view_chamados" />
+        tools:layout="@layout/activity_chamados" />
 
 
 </navigation>

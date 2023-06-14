@@ -17,6 +17,9 @@
         android:theme="@style/Theme.UTeeth3pi"
         tools:targetApi="31">
         <activity
+            android:name=".ChamadosActivity"
+            android:exported="false" />
+        <activity
             android:name=".recycleview.RecyclerViewChamadosActivity"
             android:exported="true" />
         <activity

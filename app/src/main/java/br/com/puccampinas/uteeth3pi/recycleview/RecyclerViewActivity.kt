@@ -1,25 +1,12 @@
 package br.com.puccampinas.uteeth3pi.recycleview
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageButton
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import br.com.puccampinas.uteeth3pi.ChamadosAceitosFragment
-import br.com.puccampinas.uteeth3pi.HomeMenuFragment
-import br.com.puccampinas.uteeth3pi.MainActivity
 import br.com.puccampinas.uteeth3pi.R
-import br.com.puccampinas.uteeth3pi.datastore.UserPreferencesRepository
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
-import com.google.gson.GsonBuilder
 
 class RecyclerViewActivity : AppCompatActivity() {
 

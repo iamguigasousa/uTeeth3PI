@@ -125,7 +125,7 @@ class HomeMenuFragment : Fragment() {
         }
 
         binding.btnChamados.setOnClickListener {
-            findNavController().navigate(R.id.action_homeMenuFragment_to_recyclerViewChamadosActivity)
+            findNavController().navigate(R.id.action_homeMenuFragment_to_ChamadosActivity)
         }
 
 
