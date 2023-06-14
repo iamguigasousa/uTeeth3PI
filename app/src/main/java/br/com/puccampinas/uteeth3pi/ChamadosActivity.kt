@@ -14,6 +14,8 @@ import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import br.com.puccampinas.uteeth3pi.databinding.ActivityChamadosBinding
+import br.com.puccampinas.uteeth3pi.databinding.ActivityMainBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnCompleteListener
@@ -34,6 +36,8 @@ class ChamadosActivity : AppCompatActivity() {
     private lateinit var btnLocalizacao: TextView
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+    private lateinit var binding: ActivityChamadosBinding
+    private var gson = GsonBuilder().enableComplexMapKeySerialization().create()
 
 
 
@@ -41,7 +45,8 @@ class ChamadosActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chamados)
+        binding = ActivityChamadosBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -53,15 +58,11 @@ class ChamadosActivity : AppCompatActivity() {
             getCurrentLocation()
         }
 
-
-
-
+        getDados()
 
 
 
     }
-
-
 
     private fun getCurrentLocation(){
         if (checkPermissions()){
@@ -132,67 +133,26 @@ class ChamadosActivity : AppCompatActivity() {
     }
 
     private fun getDados(){
-        var gson = GsonBuilder().enableComplexMapKeySerialization().create()
-        auth = Firebase.auth
         val user = auth.currentUser
         val userUid = user!!.uid
 
-        val userRef = db.collection("dentista").document(userUid)
 
-        userRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
+        val collectionRef = firestore.collection("Chamados")
+            .whereEqualTo("uidDentista",userUid).whereEqualTo("status","Accept")
+        collectionRef.get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    binding.tvName.text = document.getString("name").toString()
+                    binding.tvPhone.text = document.getString("phone").toString()
 
-                    FirebaseMessaging.getInstance().token.addOnCompleteListener(
-                        OnCompleteListener { task ->
-                            if (!task.isSuccessful) {
-                                Log.w(
-                                    ContentValues.TAG,
-                                    "Fetching FCM registration token failed",
-                                    task.exception
-                                )
-                                return@OnCompleteListener
-                            }
-
-                            // Get new FCM registration token
-                            val token = task.result
-
-
-                            var data = gson.fromJson(
-                                (JSONObject(document.data).toString()),
-                                data::class.java
-                            )
-
-                            val documentRef =
-                                db.collection("Chamados").document(uid.toString())
-                                    .collection("dentista").document(userUid)
-
-                            val userData = hashMapOf(
-                                "name" to data.name,
-                                "uid" to data.uid,
-                                "fcmToken" to token,
-                                "curriculum" to data.curriculum,
-                                "phone" to data.phone
-
-
-                            )
-
-                            documentRef.set(userData)
-                                .addOnSuccessListener {
-
-                                }
-                                .addOnFailureListener { e ->
-                                    // Ocorreu um erro ao adicionar o documento à subcoleção
-                                }
-                        })
-
-                } else {
-                    Log.d(ContentValues.TAG, "No such document")
+                    // Faça algo com os dados obtidos, como atualizar os TextViews
                 }
             }
             .addOnFailureListener { exception ->
-                Log.d(ContentValues.TAG, "get failed with ", exception)
+                // Trate qualquer erro que ocorra durante a obtenção dos dados
             }
+
+
     }
 
 
