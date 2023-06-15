@@ -95,6 +95,9 @@
         <action
             android:id="@+id/action_homeMenuFragment_to_ChamadosActivity"
             app:destination="@id/ChamadosActivity" />
+        <action
+            android:id="@+id/action_homeMenuFragment_to_avaliacaoActivity"
+            app:destination="@id/avaliacaoActivity" />
     </fragment>
 
     <fragment
@@ -118,6 +121,11 @@
         android:name="br.com.puccampinas.uteeth3pi.ChamadosActivity"
         android:label="activity_recycler_view_chamados"
         tools:layout="@layout/activity_chamados" />
+    <activity
+        android:id="@+id/avaliacaoActivity"
+        android:name="br.com.puccampinas.uteeth3pi.recycleview.AvaliacaoActivity"
+        android:label="activity_recycler_view_avaliacao"
+        tools:layout="@layout/activity_recycler_view_avaliacao" />
 
 
 </navigation>

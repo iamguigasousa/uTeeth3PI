@@ -34,7 +34,7 @@ class AvaliacaoAdapter (private val items: List<com.google.firebase.firestore.Do
         lateinit var auth: com.google.firebase.auth.FirebaseAuth
 
 
-        holder.tv_Avaliacao.text = comentario
+        holder.tv_Avaliacao.text = comentario.toString()
 
 
 

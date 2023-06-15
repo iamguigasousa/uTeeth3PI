@@ -56,7 +56,7 @@
             style="@style/edit_text"
             android:elevation="5dp"
             android:fontFamily="@font/poppinsmedium"
-            android:hint="Name"
+            android:hint="Nome"
             android:inputType="textPersonName"
 
             android:padding="5dp"
@@ -97,7 +97,7 @@
             style="@style/edit_text"
             android:elevation="5dp"
             android:fontFamily="@font/poppinsmedium"
-            android:hint="Phone"
+            android:hint="Telefone"
             android:inputType="number"
 
             android:padding="5dp"
@@ -193,7 +193,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_cadastrar"
             style="@style/containerComponents"
-            android:text="Sign up"
+            android:text="Cadastre-se"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
