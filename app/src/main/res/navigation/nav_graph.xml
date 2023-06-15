@@ -37,34 +37,11 @@
             app:destination="@id/LoginFragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/HomeFragment"
-        android:name="br.com.puccampinas.uteeth3pi.HomeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home">
-
-        <action
-            android:id="@+id/action_HomeFragment_to_InfoFragment"
-            app:destination="@+id/InfoFragment" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/NotificationFragment"
-        android:name="br.com.puccampinas.uteeth3pi.NotificationsAreDisabledFragment"
-        android:label="Notification"
-        tools:layout="@layout/fragment_notifications_are_disabled">
 
 
-    </fragment>
 
-    <fragment
-        android:id="@+id/InfoFragment"
-        android:name="br.com.puccampinas.uteeth3pi.InfoFragment"
-        android:label="Info"
-        tools:layout="@layout/fragment_info">
 
-    </fragment>
+
     <fragment
         android:id="@+id/splashScreenFragment3"
         android:name="br.com.puccampinas.uteeth3pi.SplashScreenFragment"
@@ -92,16 +69,15 @@
             android:id="@+id/action_homeMenuFragment_to_recyclerViewActivity"
             app:destination="@id/recyclerViewActivity" />
         <action
-            android:id="@+id/action_homeMenuFragment_to_recyclerViewChamadosActivity"
-            app:destination="@id/recyclerViewChamadosActivity" />
-        <action
             android:id="@+id/action_homeMenuFragment_to_ChamadosActivity"
-            app:destination="@id/ChamadosActivity" />
+            app:destination="@id/chamadosActivity" />
         <action
             android:id="@+id/action_homeMenuFragment_to_avaliacaoActivity"
             app:destination="@id/avaliacaoActivity" />
+        <action
+            android:id="@+id/action_homeMenuFragment_to_chamadosActivity"
+            app:destination="@id/chamadosActivity" />
     </fragment>
-
     <fragment
         android:id="@+id/accountDetailsFragment"
         android:name="br.com.puccampinas.uteeth3pi.AccountDetailsFragment"
@@ -111,18 +87,16 @@
             android:id="@+id/action_accountDetailsFragment_to_homeMenuFragment"
             app:destination="@id/homeMenuFragment" />
     </fragment>
-
     <activity
         android:id="@+id/recyclerViewActivity"
         android:name="br.com.puccampinas.uteeth3pi.recycleview.RecyclerViewActivity"
         android:label="activity_recycler_view"
         tools:layout="@layout/activity_recycler_view" />
-
     <activity
-        android:id="@+id/ChamadosActivity"
+        android:id="@+id/chamadosActivity"
         android:name="br.com.puccampinas.uteeth3pi.ChamadosActivity"
-        android:label="activity_recycler_view_chamados"
-        tools:layout="@layout/activity_recycler_view_chamados" />
+        android:label="activity_chamados"
+        tools:layout="@layout/activity_chamados" />
     <activity
         android:id="@+id/avaliacaoActivity"
         android:name="br.com.puccampinas.uteeth3pi.recycleview.AvaliacaoActivity"
