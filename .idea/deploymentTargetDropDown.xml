@@ -6,23 +6,12 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\pedri\.android\avd\Pixel_6_Pro_API_29.avd" />
+            <type value="SERIAL_NUMBER" />
+            <value value="RQCT3031X8E" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <targetSelectedWithDropDown>
-      <Target>
-        <type value="QUICK_BOOT_TARGET" />
-        <deviceKey>
-          <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\pedri\.android\avd\Pixel_6_Pro_API_29.avd" />
-          </Key>
-        </deviceKey>
-      </Target>
-    </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-06-15T06:22:04.244296500Z" />
+    <timeTargetWasSelectedWithDropDown value="2023-06-15T06:27:02.766951400Z" />
   </component>
 </project>
