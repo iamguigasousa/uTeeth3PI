@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="18dp"
+    app:cardCornerRadius="20dp"
+    android:layout_marginTop="80dp"
+    android:layout_marginStart="80dp"
+    android:layout_marginEnd="80dp"
+    android:layout_marginBottom="16dp">
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background_corners"
+        android:orientation="vertical">
+
+            <RatingBar
+                android:id="@+id/ratingbar"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:progressTint="@color/purple_500"
+                android:rating="4"
+                android:scaleX="0.6"
+                android:scaleY="0.6"
+                android:contentDescription="Rating: 4 de 5 estrelas"
+                android:secondaryProgressTint="@color/purple_500">
+            </RatingBar>
+
+            <TextView
+                android:id="@+id/tv_estrela"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-10dp"
+                android:fontFamily="@font/poppinslight"
+                android:text="4 estrelas de 5"
+                android:textColor="@color/white">
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/tv_nome_avaliacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="-20dp"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="Jalin Rabey"
+                android:textColor="@color/white">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_data_avaliacao"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/poppinslight"
+                android:text="25 de Abril, 2023"
+                android:textColor="@color/white"
+                android:textStyle="italic">
+
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/tv_avaliacao"
+                android:layout_width="wrap_content"
+                android:layout_height="280dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="-20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/poppinslight"
+                android:text="Lorem ipsum dolor eget placerat imperdiet eu aliquet, orci nibh libero felis pharetra hac molestie sagittis, et a vestibulum commodo posuere nam. felis senectus volutpat ad elementum aliquam placerat, curabitur purus etiam morbi tempus rutrum, fringilla dapibus rhoncus suscipit tempor. nostra non quis vel dolor malesuada odio lacus, nisl tempus leo tristique rutrum vestibulum felis, porttitor feugiat etiam felis tellus scelerisque. fames vestibulum curabitur rutrum ut platea mattis himenaeos lacinia ipsum, accumsan elit senectus lacinia curabitur felis odio sem, praesent aptent placerat urna torquent donec nisi ante. facilisis erat laoreet hendrerit quisque, augue ultrices nullam nostra bibendum, commodo vel euismod."
+                android:textColor="@color/white"
+                android:textStyle="italic">
+
+            </TextView>
+
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
+
+
+
+
+

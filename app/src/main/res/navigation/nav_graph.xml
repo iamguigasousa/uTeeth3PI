@@ -31,11 +31,40 @@
         android:name="br.com.puccampinas.uteeth3pi.CriarContaFragment"
         android:label="Criar Conta"
         tools:layout="@layout/fragment_criar_conta" >
+
         <action
             android:id="@+id/action_CriarContaFragment_to_LoginFragment"
             app:destination="@id/LoginFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="br.com.puccampinas.uteeth3pi.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_InfoFragment"
+            app:destination="@+id/InfoFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/NotificationFragment"
+        android:name="br.com.puccampinas.uteeth3pi.NotificationsAreDisabledFragment"
+        android:label="Notification"
+        tools:layout="@layout/fragment_notifications_are_disabled">
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/InfoFragment"
+        android:name="br.com.puccampinas.uteeth3pi.InfoFragment"
+        android:label="Info"
+        tools:layout="@layout/fragment_info">
+
+    </fragment>
     <fragment
         android:id="@+id/splashScreenFragment3"
         android:name="br.com.puccampinas.uteeth3pi.SplashScreenFragment"

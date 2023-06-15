@@ -157,26 +157,18 @@ class HomeMenuFragment : Fragment() {
             loadImageFromStorage(uid)
         }
 
-        //ir para detalhes da conta
-        binding.llDetalhesconta.setOnClickListener {
-            findNavController().navigate(R.id.action_homeMenuFragment_to_accountDetailsFragment)
+        binding.btnAvaliacao.setOnClickListener {
+            findNavController().navigate(R.id.action_homeMenuFragment_to_avaliacaoActivity)
         }
+
         binding.btnAccount.setOnClickListener {
             findNavController().navigate(R.id.action_homeMenuFragment_to_accountDetailsFragment)
         }
 
-        //navegar para emergencias
-        binding.llEmergencias.setOnClickListener {
-            findNavController().navigate(R.id.action_homeMenuFragment_to_recyclerViewActivity)
-        }
         binding.btnEmergencias.setOnClickListener {
             findNavController().navigate(R.id.action_homeMenuFragment_to_recyclerViewActivity)
         }
 
-        //navegar chamados aceitos
-        binding.llAceitos.setOnClickListener {
-            findNavController().navigate(R.id.action_homeMenuFragment_to_ChamadosActivity)
-        }
         binding.btnChamados.setOnClickListener {
             findNavController().navigate(R.id.action_homeMenuFragment_to_ChamadosActivity)
         }
