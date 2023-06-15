@@ -47,7 +47,7 @@
             android:layout_marginLeft="30dp"
             android:textSize="20dp"
             android:fontFamily="@font/poppinssemibold"
-            android:text="Create your account"
+            android:text="@string/tv_create_your_account"
             android:layout_marginTop="20dp"
             />
 
@@ -84,7 +84,7 @@
             android:padding="5dp"
             android:shadowColor="@color/black"
             android:elevation="5dp"
-            android:hint="Password"
+            android:hint="@string/tv_password"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/black"
             android:inputType="textPassword"
@@ -113,7 +113,7 @@
             android:shadowColor="@color/black"
             android:elevation="5dp"
 
-            android:hint="Adress 1">
+            android:hint="@string/address_1">
 
         </EditText>
 
@@ -125,7 +125,7 @@
             android:shadowColor="@color/black"
             android:elevation="5dp"
 
-            android:hint="Adress 2">
+            android:hint="@string/address_2">
 
         </EditText>
 
@@ -134,7 +134,7 @@
             style="@style/edit_text"
             android:elevation="5dp"
             android:fontFamily="@font/poppinsmedium"
-            android:hint="Adress 3"
+            android:hint="@string/address_3"
             android:padding="5dp"
 
             android:shadowColor="@color/black">
@@ -175,17 +175,6 @@
             android:elevation="100dp"
             />
 
-        <TextView
-            android:id="@+id/tv_create2"
-            android:layout_width="380dp"
-            android:layout_height="26dp"
-            android:layout_gravity="center"
-
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/poppinssemibold"
-            android:text="Write a resume, up to 2000 words"
-            android:layout_marginLeft="20dp"
-            android:textSize="20dp" />
 
 
 
@@ -196,7 +185,7 @@
             android:elevation="5dp"
             android:fontFamily="@font/poppinsmedium"
             android:gravity="center|top"
-            android:hint="Resume"
+            android:hint="Curriculo"
             android:maxLength="2000"
             android:padding="5dp"
             android:shadowColor="@color/black" />

@@ -131,7 +131,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
                                         android:fontFamily="@font/poppinsmedium"
-                                        android:text="Nome:"
+                                        android:text="@string/tv_name"
 
                                         android:textAllCaps="false"
                                         android:textColor="#040957"
@@ -235,7 +235,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
                                         android:fontFamily="@font/poppinsmedium"
-                                        android:text="Telefone:"
+                                        android:text="@string/tv_phone"
 
                                         android:textAllCaps="false"
                                         android:textColor="#040957"
@@ -494,7 +494,7 @@
                                     android:layout_height="65dp"
                                     android:elevation="100dp"
                                     android:fontFamily="@font/poppinsregular"
-                                    android:text="Atualizar"
+                                    android:text="@string/update_account"
                                     android:textColor="@color/white"
                                     android:textStyle="bold" />
 

@@ -41,7 +41,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nome:"
+                    android:text="@string/tv_name"
                     android:fontFamily="@font/poppinsmedium"
                     android:textColor="@color/black"
                     android:textSize="20sp">
@@ -51,7 +51,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nome"
+                    android:text=""
                     android:fontFamily="@font/poppinsregular"
                     android:id="@+id/tv_name"
                     android:textColor="@color/black"
@@ -72,7 +72,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Número:"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:fontFamily="@font/poppinsmedium"
@@ -84,7 +84,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Número"
+                    android:text="@string/tv_phone"
                     android:fontFamily="@font/poppinsregular"
                     android:id="@+id/tv_phone"
                     android:textColor="@color/black"
@@ -112,7 +112,7 @@
                     android:layout_marginBottom="10dp"
                     android:drawableTint="@color/blue_200"
                     android:fontFamily="@font/poppinsregular"
-                    android:text="Enviar Localização  "
+                    android:text="@string/send_localization"
                     android:textColor="@color/blue_200"
                     android:textSize="20sp"
                     android:textStyle="bold"

@@ -143,7 +143,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:fontFamily="@font/poppinssemibold"
-                                android:text="Emergências"
+                                android:text="@string/tv_emergency"
                                 android:textAlignment="center"
                                 android:textColor="@color/black" />
                         </LinearLayout>
@@ -183,7 +183,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:fontFamily="@font/poppinssemibold"
-                                android:text="Disponível"
+                                android:text="@string/tv_status"
                                 android:textAlignment="center"
                                 android:textColor="@color/black" />
                         </LinearLayout>
@@ -233,7 +233,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:fontFamily="@font/poppinssemibold"
-                                android:text="Chamados Aceitos"
+                                android:text="@string/tv_calls_accepted"
                                 android:textAlignment="center"
                                 android:textColor="@color/black" />
                         </LinearLayout>
@@ -274,7 +274,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
                                 android:fontFamily="@font/poppinssemibold"
-                                android:text="Detalhes de Conta"
+                                android:text="@string/tv_account_details"
                                 android:textAlignment="center"
                                 android:textColor="@color/black" />
                         </LinearLayout>
@@ -294,7 +294,7 @@
             android:layout_height="65dp"
             android:elevation="100dp"
             android:fontFamily="@font/poppinsregular"
-            android:text="Deslogar"
+            android:text="@string/tv_sign_out"
             android:textColor="@color/white"
             android:textStyle="bold" />
     </LinearLayout>
