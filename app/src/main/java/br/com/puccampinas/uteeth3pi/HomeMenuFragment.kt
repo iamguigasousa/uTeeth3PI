@@ -88,10 +88,52 @@ class HomeMenuFragment : Fragment() {
         userPreferencesRepository = UserPreferencesRepository.getInstance(MainActivity())
 
         binding.btnLiga.setOnClickListener {
+
             userPreferencesRepository.updateStatus(!userPreferencesRepository.status)
 
             OnStatus(userPreferencesRepository.status)
             Snackbar.make(requireView(),"Status Atualizado!", Snackbar.LENGTH_LONG).show()
+
+            val status = userPreferencesRepository.status
+
+            val snackbar = Snackbar.make(requireView(), "Status Atualizado!", Snackbar.LENGTH_LONG)
+
+// Defina as cores para os diferentes estados do status
+            val greenColor = resources.getColor(android.R.color.holo_green_light)
+            val redColor = resources.getColor(android.R.color.holo_red_light)
+
+// Defina a cor de fundo da Snackbar com base no status
+            if (status) {
+                snackbar.view.setBackgroundColor(greenColor)
+            } else {
+                snackbar.view.setBackgroundColor(redColor)
+            }
+
+            snackbar.show()
+        }
+        binding.llDisponivel.setOnClickListener {
+
+            userPreferencesRepository.updateStatus(!userPreferencesRepository.status)
+
+            OnStatus(userPreferencesRepository.status)
+            Snackbar.make(requireView(),"Status Atualizado!", Snackbar.LENGTH_LONG).show()
+
+            val status = userPreferencesRepository.status
+
+            val snackbar = Snackbar.make(requireView(), "Status Atualizado!", Snackbar.LENGTH_LONG)
+
+// Defina as cores para os diferentes estados do status
+            val greenColor = resources.getColor(android.R.color.holo_green_light)
+            val redColor = resources.getColor(android.R.color.holo_red_light)
+
+// Defina a cor de fundo da Snackbar com base no status
+            if (status) {
+                snackbar.view.setBackgroundColor(greenColor)
+            } else {
+                snackbar.view.setBackgroundColor(redColor)
+            }
+
+            snackbar.show()
         }
 
 
@@ -115,15 +157,26 @@ class HomeMenuFragment : Fragment() {
             loadImageFromStorage(uid)
         }
 
-
+        //ir para detalhes da conta
+        binding.llDetalhesconta.setOnClickListener {
+            findNavController().navigate(R.id.action_homeMenuFragment_to_accountDetailsFragment)
+        }
         binding.btnAccount.setOnClickListener {
             findNavController().navigate(R.id.action_homeMenuFragment_to_accountDetailsFragment)
         }
 
+        //navegar para emergencias
+        binding.llEmergencias.setOnClickListener {
+            findNavController().navigate(R.id.action_homeMenuFragment_to_recyclerViewActivity)
+        }
         binding.btnEmergencias.setOnClickListener {
             findNavController().navigate(R.id.action_homeMenuFragment_to_recyclerViewActivity)
         }
 
+        //navegar chamados aceitos
+        binding.llAceitos.setOnClickListener {
+            findNavController().navigate(R.id.action_homeMenuFragment_to_ChamadosActivity)
+        }
         binding.btnChamados.setOnClickListener {
             findNavController().navigate(R.id.action_homeMenuFragment_to_ChamadosActivity)
         }
@@ -149,14 +202,13 @@ class HomeMenuFragment : Fragment() {
 
         imageRef.getFile(localFile)
             .addOnSuccessListener {
-                // A imagem foi baixada com sucesso, você pode exibi-la na ImageView do seu layout
+
                 val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
                 binding.imageView.setImageBitmap(bitmap)
             }
             .addOnFailureListener { exception ->
-                // Ocorreu uma falha ao baixar a imagem
-                // Lide com o erro de acordo com sua necessidade
-                Log.e(TAG, "Error downloading image: ${exception.message}", exception)
+
+                Log.e(TAG, "Erro ao baixar a imagem: ${exception.message}", exception)
             }
     }
 

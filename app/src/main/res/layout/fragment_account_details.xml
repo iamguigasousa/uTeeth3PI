@@ -248,6 +248,7 @@
                                         android:layout_weight="1"
                                         android:fontFamily="@font/poppinsmedium"
                                         android:text=""
+                                        android:inputType="number"
                                         android:textAlignment="viewEnd"
                                         android:textAllCaps="false"
                                         android:backgroundTint="@color/white"

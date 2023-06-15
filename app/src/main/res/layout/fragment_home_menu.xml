@@ -109,6 +109,7 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
+                            android:id="@+id/ll_emergencias"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
@@ -148,6 +149,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/ll_disponivel"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
@@ -196,6 +198,7 @@
                         android:orientation="horizontal">
 
                         <LinearLayout
+                            android:id="@+id/ll_aceitos"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"
@@ -236,6 +239,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/ll_detalhesconta"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_margin="10dp"

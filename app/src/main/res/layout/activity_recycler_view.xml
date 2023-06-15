@@ -21,22 +21,6 @@
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/imgb_arrow"
-        android:layout_width="77dp"
-        android:layout_height="70dp"
-        android:background="#00000000"
-        android:scaleType="centerCrop"
-        android:src="@drawable/arrow2"
-        android:layout_margin="20dp"
-        tools:ignore="MissingConstraints">
-    </androidx.appcompat.widget.AppCompatImageButton>
-
-<!--    <FrameLayout-->
-<!--        android:id="@+id/container2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
-<!--    </FrameLayout>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -153,39 +153,6 @@ class AccountDetailsFragment : Fragment() {
         }
     }
 
-    private fun setFireStoreData() {
-        val ref = db.collection("dentista").document(userId)
-        ref.get().addOnSuccessListener {
-            if (it != null) {
-                val nomeUsuario = it.data?.get("name")?.toString()
-                val emailUsuario = it.data?.get("email")?.toString()
-                val numeroUsuario = it.data?.get("phone")?.toString()
-                val endereco1Usuario = it.data?.get("address1")?.toString()
-                val endereco2Usuario = it.data?.get("address2")?.toString()
-                val endereco3Usuario = it.data?.get("address3")?.toString()
-                val curriculo2Usuario = it.data?.get("address3")?.toString()
-
-
-                nomeUsuario2.setText(nomeUsuario)
-                emailUsuario2.setText(emailUsuario)
-                phoneUsuario.setText(numeroUsuario)
-                address1Usuario.setText(endereco1Usuario)
-                address2Usuario.setText(endereco2Usuario)
-                address3Usuario.setText(endereco3Usuario)
-                curriculoUsuario.setText(curriculo2Usuario)
-
-
-            }
-        }
-            .addOnFailureListener{
-                Snackbar.make(requireView(),"Falha ao colocar.", Snackbar.LENGTH_LONG).show()
-            }
-
-    }
-
-
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

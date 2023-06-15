@@ -32,9 +32,6 @@ import java.io.ByteArrayOutputStream
 import java.util.UUID
 
 
-/**
- * Fragment para o cadastro de conta.
- */
 class CriarContaFragment : Fragment() {
 
     private val TAG = "SignUpFragment"
@@ -134,7 +131,7 @@ class CriarContaFragment : Fragment() {
                     val downloadUri = task.result
                     // Aqui você pode usar o downloadUri para salvar a URL da imagem no Firestore ou onde mais for necessário.
                     Log.d(TAG, "Imagem enviada com sucesso. URL: $downloadUri")
-                    Snackbar.make(requireView(),"Foto Enviada com Sucesso!",Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(requireView(),"Imagem enviada com sucesso",Snackbar.LENGTH_LONG).show()
                 } else {
                     Log.e(TAG, "Erro ao enviar a imagem", task.exception)
                 }

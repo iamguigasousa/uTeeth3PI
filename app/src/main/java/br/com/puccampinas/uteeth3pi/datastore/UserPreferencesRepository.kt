@@ -2,8 +2,6 @@ package br.com.puccampinas.uteeth3pi.datastore
 
 import android.content.Context
 import androidx.core.content.edit
-import br.com.puccampinas.uteeth3pi.HomeFragment
-import br.com.puccampinas.uteeth3pi.MainActivity
 
 private const val USER_PREFERENCES_NAME = "prefs_tokens"
 

@@ -21,6 +21,8 @@ class ChamadosActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var binding: ActivityChamadosBinding
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,11 @@ class ChamadosActivity : AppCompatActivity() {
 
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+
+
+
+
 
         auth = FirebaseAuth.getInstance()
 
@@ -45,9 +52,12 @@ class ChamadosActivity : AppCompatActivity() {
 
 
 
+
     }
 
+
     private fun sendLocalizacao(){
+
         // Verificar permissões de localização
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -87,7 +97,10 @@ class ChamadosActivity : AppCompatActivity() {
                 for (document in result) {
                     binding.tvName.text = document.getString("name").toString()
                     binding.tvPhone.text = document.getString("phone").toString()
-                    val uid = document.getString("uid")
+
+
+
+
 
 
 
@@ -102,7 +115,11 @@ class ChamadosActivity : AppCompatActivity() {
     }
 
 
+
     private fun getLocalizacaoAtual() {
+        val locationRequest = LocationRequest.create()
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -120,21 +137,56 @@ class ChamadosActivity : AppCompatActivity() {
             // for ActivityCompat#requestPermissions for more details.
             return
         }
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location: Location? ->
-                // Enviar a localização para o Firebase Firestore
-                if (location != null) {
-                    enviarLocalizacaoParaFirestore(location.latitude, location.longitude)
+        val user = auth.currentUser
+        val userUid = user!!.uid
+
+
+        val collectionRef = firestore.collection("Chamados")
+            .whereEqualTo("uidDentista",userUid).whereEqualTo("status","Accept")
+        collectionRef.get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    binding.tvName.text = document.getString("name").toString()
+                    binding.tvPhone.text = document.getString("phone").toString()
+                    val uid = document.id
+                    if (uid.isNotEmpty()){
+                        fusedLocationClient.lastLocation
+                            .addOnSuccessListener { location: Location? ->
+                                // Enviar a localização para o Firebase Firestore
+                                if (location != null) {
+                                    enviarLocalizacaoParaFirestore(location.latitude, location.longitude, uid)
+
+                                }
+
+                            }
+                            .addOnFailureListener { exception: Exception ->
+                                // Lidar com falha ao obter a localização
+                                // ...
+                            }
+                    }
+
+
+
+
+
+
+                    // Faça algo com os dados obtidos, como atualizar os TextViews
                 }
             }
-            .addOnFailureListener { exception: Exception ->
-                // Lidar com falha ao obter a localização
-                // ...
+            .addOnFailureListener { exception ->
+                // Trate qualquer erro que ocorra durante a obtenção dos dados
             }
+
     }
 
-    private fun enviarLocalizacaoParaFirestore(latitude: Double, longitude: Double) {
+
+
+    private fun enviarLocalizacaoParaFirestore(latitude: Double, longitude: Double, uid: String) {
+
         val db = FirebaseFirestore.getInstance()
+
+        val user = auth.currentUser
+        val userUid = user!!.uid
 
 
         val localizacao = hashMapOf(
@@ -143,7 +195,8 @@ class ChamadosActivity : AppCompatActivity() {
         )
 
 
-        db.collection("Chamados").document("K00aG0V0i0q8TX1mdJPX")
+
+        db.collection("Chamados").document(uid)
             .collection("localização")
             .add(localizacao)
             .addOnSuccessListener { documentReference ->

@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChamadosActivity">
+    tools:context=".ChamadosActivity"
+    android:background="@drawable/gradient_background">
+    >
+
+
 
     <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -163,5 +167,6 @@
 
 
     </androidx.cardview.widget.CardView>
+
 
 </LinearLayout>

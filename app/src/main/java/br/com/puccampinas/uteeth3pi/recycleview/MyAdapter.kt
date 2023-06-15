@@ -35,12 +35,16 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
         val phone = item.getString("phone")
         val uid = item.getString("uid")
         val photo = item.getString("photoPath")
+        val photo1 = item.getString("photoPath1")
+        val photo2 = item.getString("photoPath2")
 
         lateinit var auth: FirebaseAuth
 
         holder.tv_name.text = name
         holder.tv_phone.text = phone
         Glide.with(holder.itemView).load(photo).into(holder.tv_photo)
+        Glide.with(holder.itemView).load(photo1).into(holder.tv_photo1)
+        Glide.with(holder.itemView).load(photo2).into(holder.tv_photo2)
 
         //ação do botão aceitar
 
@@ -113,7 +117,9 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
                 }
 
         }
+
     }
+
 
     override fun getItemCount(): Int {
         return items.size

@@ -1,10 +1,13 @@
 package br.com.puccampinas.uteeth3pi.recycleview
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.com.puccampinas.uteeth3pi.HomeMenuFragment
+import br.com.puccampinas.uteeth3pi.MainActivity
 import br.com.puccampinas.uteeth3pi.R
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -12,8 +15,6 @@ class RecyclerViewActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: MyAdapter
-    private lateinit var btnArrow: ImageButton
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,27 +22,11 @@ class RecyclerViewActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recyclerView)
 
-        btnArrow = findViewById(R.id.imgb_arrow)
+
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         chamarFirebase()
-
-
-
-
-        val btnArrow = findViewById<ImageButton>(R.id.imgb_arrow)
-
-
-
-//        btnArrow.setOnClickListener {
-//
-//            val fragment = HomeMenuFragment()
-//            supportFragmentManager.beginTransaction()
-//                .replace(R.id.container2, fragment)
-//                .commit()
-//
-//        }
 
 
 
@@ -63,6 +48,8 @@ class RecyclerViewActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
 
 
