@@ -115,6 +115,9 @@ class HomeMenuFragment : Fragment() {
             loadImageFromStorage(uid)
         }
 
+        binding.btnAvaliacao.setOnClickListener {
+            findNavController().navigate(R.id.action_homeMenuFragment_to_avaliacaoActivity)
+        }
 
         binding.btnAccount.setOnClickListener {
             findNavController().navigate(R.id.action_homeMenuFragment_to_accountDetailsFragment)
