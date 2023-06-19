@@ -12,6 +12,6 @@ class AvaliacaoViewHolder(itemView: android.view.View) : RecyclerView.ViewHolder
     val tv_Estrela: TextView = itemView.findViewById(br.com.puccampinas.uteeth3pi.R.id.tv_estrela)
     val tv_Nome : TextView = itemView.findViewById(br.com.puccampinas.uteeth3pi.R.id.tv_nome_avaliacao)
     val tv_Data : TextView = itemView.findViewById(br.com.puccampinas.uteeth3pi.R.id.tv_data_avaliacao)
-    val tv_Avaliacao : TextView = itemView.findViewById(br.com.puccampinas.uteeth3pi.R.id.tv_avaliacao)
+    val tv_Avaliacao : TextView = itemView.findViewById(br.com.puccampinas.uteeth3pi.R.id.tv_comentario)
 
 }

@@ -123,6 +123,12 @@ class MyAdapter(private val items: List<DocumentSnapshot>) : RecyclerView.Adapte
 
         }
 
+        holder.btn_recusar.setOnClickListener { view ->
+
+            removeCardView(holder.itemView.findViewById(R.id.cardview))
+
+        }
+
     }
 
 

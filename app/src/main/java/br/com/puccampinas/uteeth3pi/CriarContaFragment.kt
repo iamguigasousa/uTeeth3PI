@@ -42,6 +42,8 @@ class CriarContaFragment : Fragment() {
     private var _binding: FragmentCriarContaBinding? = null
     private val binding get() = _binding!!
 
+
+    private var datax: ByteArray? = null
     private val REQUEST_IMAGE_CAPTURE = 1
 
     override fun onCreateView(
@@ -73,6 +75,8 @@ class CriarContaFragment : Fragment() {
                 binding.etCurriculum.text.toString(),
                 (activity as MainActivity).getFcmToken()
             );
+
+
         }
 
         binding.btnFoto.setOnClickListener {
@@ -108,38 +112,46 @@ class CriarContaFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
-            binding.imgViewteste.setImageBitmap(imageBitmap)
+            handleCapturedPhoto(imageBitmap)
+        }
+    }
 
-            val byteArrayOutputStream = ByteArrayOutputStream()
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-            val data = byteArrayOutputStream.toByteArray()
+    private fun uploadPhoto(photoData: ByteArray) {
+        // Armazenar a foto no Firebase Storage
+        val storageRef = Firebase.storage.reference
+        val imageRef = storageRef.child("${auth.currentUser?.uid}/${UUID.randomUUID()}.jpg")
 
-            // Armazenar a foto no Firebase Storage
-            val storageRef = Firebase.storage.reference
-            val imageRef = storageRef.child("${auth.currentUser?.uid}/${UUID.randomUUID()}.jpg")
+        val uploadTask = imageRef.putBytes(photoData)
 
-            val uploadTask = imageRef.putBytes(data)
-            uploadTask.continueWithTask(Continuation {
-                if (!it.isSuccessful) {
-                    it.exception?.let { e ->
-                        throw e
-                    }
+        uploadTask.continueWithTask(Continuation {
+            if (!it.isSuccessful) {
+                it.exception?.let { e ->
+                    throw e
                 }
-                imageRef.downloadUrl
-            }).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val downloadUri = task.result
-                    // Aqui você pode usar o downloadUri para salvar a URL da imagem no Firestore ou onde mais for necessário.
-                    Log.d(TAG, "Imagem enviada com sucesso. URL: $downloadUri")
-                    Snackbar.make(requireView(),"Imagem enviada com sucesso",Snackbar.LENGTH_LONG).show()
-                } else {
-                    Log.e(TAG, "Erro ao enviar a imagem", task.exception)
-                }
+            }
+            imageRef.downloadUrl
+        }).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val downloadUri = task.result
+                // Aqui você pode usar o downloadUri para salvar a URL da imagem no Firestore ou onde mais for necessário.
+                Log.d(TAG, "Imagem enviada com sucesso. URL: $downloadUri")
+                Snackbar.make(requireView(), "Imagem enviada com sucesso", Snackbar.LENGTH_LONG).show()
+            } else {
+                Log.e(TAG, "Erro ao enviar a imagem", task.exception)
             }
         }
     }
 
+    private fun handleCapturedPhoto(imageBitmap: Bitmap) {
+        binding.imgViewteste.setImageBitmap(imageBitmap)
 
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+        datax = byteArrayOutputStream.toByteArray()
+
+
+
+    }
 
 
     private fun hideKeyboard(){
@@ -148,6 +160,11 @@ class CriarContaFragment : Fragment() {
     }
 
     private fun signUpNewAccount(nome: String, telefone: String, email: String, password: String, address1: String, address2: String, address3: String, curriculum: String, fcmToken: String) {
+        if (nome.isEmpty() || telefone.isEmpty() || email.isEmpty() || password.isEmpty() || address1.isEmpty() || address2.isEmpty() || address3.isEmpty() || curriculum.isEmpty()) {
+            // Exibir uma mensagem de erro informando que todos os campos devem ser preenchidos
+            Toast.makeText(requireContext(), "Todos os campos devem ser preenchidos", Toast.LENGTH_SHORT).show()
+            return
+        }
         auth = Firebase.auth
         // auth.useEmulator("127.0.0.1", 5001)
         // invocar a função e receber o retorno fazendo Cast para "CustomResponse"
@@ -164,6 +181,7 @@ class CriarContaFragment : Fragment() {
                         .addOnCompleteListener(requireActivity()) { res ->
                             // conta criada com sucesso.
                             if(res.result.status == "SUCCESS"){
+                                datax?.let { it1 -> uploadPhoto(it1)}
                                 hideKeyboard()
                                 Snackbar.make(requireView(),"Conta cadastrada!",Snackbar.LENGTH_LONG).show()
                                 findNavController().navigate(R.id.action_CriarContaFragment_to_LoginFragment)
